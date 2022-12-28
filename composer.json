@@ -1,0 +1,30 @@
+{
+    "name": "stellarwp/validation",
+    "description": "An end-to-end ready PHP validation library",
+    "minimum-stability": "stable",
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "StellarWP",
+            "email": "dev@stellarwp.com"
+        },
+        {
+            "name": "Jason Adams",
+            "email": "jason.adams@givewp.com"
+        }
+    ],
+    "require": {
+        "stellarwp/container-contract": "1.0.4",
+        "ext-json": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "StellarWP\\Validation\\": "src/"
+        }
+    },
+    "config": {
+        "platform": {
+            "php": "7.0"
+        }
+    }
+}
