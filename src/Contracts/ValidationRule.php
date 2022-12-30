@@ -27,7 +27,7 @@ interface ValidationRule
 
     /**
      * The invokable method used to validate the value. If the value is invalid, the fail callback should be invoked
-     * with the error message. Use :field: to reference the field name in the error message.
+     * with the error message. Use {field} to reference the field name in the error message.
      *
      * @unreleased
      *
