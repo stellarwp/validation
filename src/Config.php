@@ -45,8 +45,9 @@ class Config
 
     /**
      * @unreleased
+     *
+     * @param ContainerInterface $container
      */
-//    public static function setServiceContainer(ContainerInterface $container)
     public static function setServiceContainer($container)
     {
         self::$container = $container;
@@ -54,8 +55,9 @@ class Config
 
     /**
      * @unreleased
+     *
+     * @return ContainerInterface
      */
-//    public static function getServiceContainer(): ContainerInterface
     public static function getServiceContainer()
     {
         return self::$container;
