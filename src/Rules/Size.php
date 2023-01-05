@@ -67,11 +67,11 @@ class Size implements ValidationRule, ValidatesOnFrontEnd
     {
         if (is_int($value) || is_float($value)) {
             if ($value != $this->size) {
-                $fail(sprintf(__('%s must be exactly %d', 'give'), '{field}', $this->size));
+                $fail(sprintf(__('%s must be exactly %d', '%TEXTDOMAIN%'), '{field}', $this->size));
             }
         } elseif (is_string($value)) {
             if (mb_strlen($value) !== $this->size) {
-                $fail(sprintf(__('%s must be exactly %d characters', 'give'), '{field}', $this->size));
+                $fail(sprintf(__('%s must be exactly %d characters', '%TEXTDOMAIN%'), '{field}', $this->size));
             }
         } else {
             Config::throwValidationException("Field value must be a number or string");

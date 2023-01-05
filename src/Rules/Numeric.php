@@ -48,7 +48,7 @@ class Numeric implements ValidationRule, ValidatesOnFrontEnd
     public function __invoke($value, Closure $fail, string $key, array $values)
     {
         if (!is_numeric($value)) {
-            $fail(sprintf(__('%s must be numeric', 'give'), '{field}'));
+            $fail(sprintf(__('%s must be numeric', '%TEXTDOMAIN%'), '{field}'));
         }
     }
 }

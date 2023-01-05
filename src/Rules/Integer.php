@@ -49,7 +49,7 @@ class Integer implements ValidationRule, ValidatesOnFrontEnd, Sanitizer
     public function __invoke($value, Closure $fail, string $key, array $values)
     {
         if (is_bool($value) || false === filter_var($value, FILTER_VALIDATE_INT)) {
-            $fail(sprintf(__('%s must be an integer', 'give'), '{field}'));
+            $fail(sprintf(__('%s must be an integer', '%TEXTDOMAIN%'), '{field}'));
         }
     }
 }

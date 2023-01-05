@@ -49,7 +49,7 @@ class Email implements ValidationRule, ValidatesOnFrontEnd
     public function __invoke($value, Closure $fail, string $key, array $values)
     {
         if (!is_string($value) || !filter_var($value, FILTER_VALIDATE_EMAIL)) {
-            $fail(sprintf(__('%s is not a valid email address', 'give'), '{field}'));
+            $fail(sprintf(__('%s is not a valid email address', '%TEXTDOMAIN%'), '{field}'));
         }
     }
 }

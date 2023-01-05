@@ -32,7 +32,7 @@ class Required implements ValidationRule, ValidatesOnFrontEnd
     public function __invoke($value, Closure $fail, string $key, array $values)
     {
         if (!isset($values[$key]) || $value === null || $value === '') {
-            $fail(sprintf(__('%s is required', 'give'), '{field}'));
+            $fail(sprintf(__('%s is required', '%TEXTDOMAIN%'), '{field}'));
         }
     }
 
