@@ -11,20 +11,10 @@ function ask( string $question, string $default = '' ): string {
 	return $answer;
 }
 
-function confirm( string $question, bool $default = false ): bool {
-	$answer = ask( $question . ' (' . ( $default ? 'Y/n' : 'y/N' ) . ')' );
-
-	if ( ! $answer ) {
-		return $default;
-	}
-
-	return strtolower( $answer ) === 'y';
-}
-
 function replace_in_file( string $file, array $replacements ) {
 	$contents = file_get_contents( $file );
 
-	$success = file_put_contents(
+	file_put_contents(
 			$file,
 			str_replace(
 					array_keys( $replacements ),
@@ -49,10 +39,6 @@ $domain = $result['domain'] ?? ask( 'Domain Name', 'stellar-uplink' );
 if ( empty( $domain ) ) {
 	writeln( 'Translation domain could not be empty' );
 	exit( 0 );
-}
-
-if ( ! confirm( 'Modify files?', true ) ) {
-	exit( 1 );
 }
 
 $files = explode( PHP_EOL, run( 'grep -E -r -l -i "%TEXTDOMAIN%" ' . dirname( __FILE__, 2 ) . '/src' ) );
