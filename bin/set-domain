@@ -41,7 +41,7 @@ if ( empty( $domain ) ) {
 	exit( 0 );
 }
 
-$files = explode( PHP_EOL, run( 'grep -E -r -l -i "%TEXTDOMAIN%" ' . dirname( __FILE__, 2 ) . '/src' ) );
+$files = explode( PHP_EOL, run( 'grep -E -r -l -i "%TEXTDOMAIN%" \'' . dirname( __FILE__, 2 ) . '/src\'' ) );
 $files = array_filter( $files );
 
 foreach ( $files as $file ) {
