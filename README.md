@@ -33,6 +33,8 @@ Config::setHookPrefix('my_plugin_'); // recommended
 
 Config::setInvalidArgumentExceptionClass(MyInvalidArgumentException::class); // optional
 Config::setValidationExceptionClass(MyValidationException::class); // optional
+
+Config::initialize(); // mounts rules registrar to service container
 ```
 
 The Service Container is used for dependency injection. The library uses this to store the `ValidationRulesRegistrar`,
