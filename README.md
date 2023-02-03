@@ -62,10 +62,10 @@ $labels = [
     'age' => 'Age'
 ];
 
-$validator = new Validator($values, [
+$validator = new Validator([
     'name' => ['required'],
     'age' => ['required', 'integer', 'min:18', 'max:150']
-], $labels);
+], $values, $labels);
 
 if ($validator->passes()) {
     $safeData = $validator->validated();
