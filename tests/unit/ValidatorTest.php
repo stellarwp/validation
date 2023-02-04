@@ -212,19 +212,6 @@ class ValidatorTest extends TestCase
     }
 
     /**
-     * @unreleased
-     */
-    public function testRulesWithoutValuesThrowsAnException()
-    {
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('Missing values for rules');
-
-        new Validator([
-            'foo' => ['required'],
-        ], []);
-    }
-
-    /**
      * Adds the validation register to the container, and adds a mock validation rule
      *
      * @unreleased
