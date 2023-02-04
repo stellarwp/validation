@@ -195,6 +195,22 @@ class ValidatorTest extends TestCase
         ], $validator->validated());
     }
 
+    public function testWithSkipValidationRulesSkipsRemainingRules()
+    {
+        $validator = new Validator([
+            'foo' => ['skip', 'required'],
+            'bar' => ['required'],
+        ], [
+            'foo' => '',
+            'bar' => 'bar',
+        ]);
+
+        self::assertSame([
+            'foo' => '',
+            'bar' => 'bar',
+        ], $validator->validated());
+    }
+
     /**
      * @unreleased
      */
