@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace StellarWP\Validation;
 
+use StellarWP\Validation\Commands\SkipValidationRules;
 use StellarWP\Validation\Contracts\Sanitizer;
 
 /**
@@ -114,7 +115,11 @@ class Validator
             };
 
             foreach ($ruleSet as $rule) {
-                $rule($value, $fail, $key, $this->values);
+                $command = $rule($value, $fail, $key, $this->values);
+
+                if ($command instanceof SkipValidationRules) {
+                    break;
+                }
 
                 if ($rule instanceof Sanitizer) {
                     $value = $rule->sanitize($value);

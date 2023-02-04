@@ -6,6 +6,7 @@ namespace StellarWP\Validation\Tests\Unit;
 
 use Closure;
 use InvalidArgumentException;
+use StellarWP\Validation\Commands\SkipValidationRules;
 use StellarWP\Validation\Config;
 use StellarWP\Validation\Contracts\Sanitizer;
 use StellarWP\Validation\Contracts\ValidationRule;
@@ -224,12 +225,31 @@ class ValidatorTest extends TestCase
                 $register = new ValidationRulesRegistrar();
                 $register->register(
                     MockRequiredRule::class,
-                    MockIntegerRule::class
+                    MockIntegerRule::class,
+                    MockSkipRule::class
                 );
 
                 return $register;
             }
         );
+    }
+}
+
+class MockSkipRule implements ValidationRule
+{
+    public static function id(): string
+    {
+        return 'skip';
+    }
+
+    public static function fromString(string $options = null): ValidationRule
+    {
+        return new self();
+    }
+
+    public function __invoke($value, Closure $fail, string $key, array $values): SkipValidationRules
+    {
+        return new SkipValidationRules();
     }
 }
 
