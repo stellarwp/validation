@@ -12,7 +12,7 @@ use StellarWP\Validation\ValidationRuleSet;
  * Apply this trait to a class to enable it to have validation rules. These rules may be passed to the front-end
  * or used with the Validator to validate data.
  *
- * @unreleased
+ * @since 1.0.0
  */
 trait HasValidationRules
 {
@@ -22,7 +22,7 @@ trait HasValidationRules
     protected $validationRules;
 
     /**
-     * @unreleased
+     * @since 1.0.0
      */
     public function __construct()
     {
@@ -30,7 +30,7 @@ trait HasValidationRules
     }
 
     /**
-     * @unreleased
+     * @since 1.0.0
      */
     public function rules(...$rules): self
     {
@@ -40,7 +40,7 @@ trait HasValidationRules
     }
 
     /**
-     * @unreleased
+     * @since 1.0.0
      */
     public function hasRule(string $ruleId): bool
     {
@@ -48,7 +48,7 @@ trait HasValidationRules
     }
 
     /**
-     * @unreleased
+     * @since 1.0.0
      */
     public function getRule(string $ruleId): ValidationRule
     {
@@ -56,7 +56,7 @@ trait HasValidationRules
     }
 
     /**
-     * @unreleased
+     * @since 1.0.0
      */
     public function forgetRule(string $ruleId): self
     {
@@ -66,7 +66,7 @@ trait HasValidationRules
     }
 
     /**
-     * @unreleased
+     * @since 1.0.0
      */
     public function getValidationRules(): ValidationRuleSet
     {

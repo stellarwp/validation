@@ -7,12 +7,12 @@ namespace StellarWP\Validation\Contracts;
 /**
  * Intended to be used as part of a Validation Rule to sanitize data after it is validated.
  *
- * @unreleased
+ * @since 1.0.0
  */
 interface Sanitizer
 {
     /**
-     * @unreleased
+     * @since 1.0.0
      *
      * @param mixed $value
      *
