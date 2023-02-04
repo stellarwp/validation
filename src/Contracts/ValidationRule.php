@@ -12,7 +12,7 @@ interface ValidationRule
     /**
      * The unique id of the validation rule.
      *
-     * @unreleased
+     * @since 1.0.0
      */
     public static function id(): string;
 
@@ -22,7 +22,7 @@ interface ValidationRule
      *
      * If a value is provided after the colon, it will be the options' parameter.
      *
-     * @unreleased
+     * @since 1.0.0
      */
     public static function fromString(string $options = null): ValidationRule;
 
@@ -30,7 +30,7 @@ interface ValidationRule
      * The invokable method used to validate the value. If the value is invalid, the fail callback should be invoked
      * with the error message. Use {field} to reference the field name in the error message.
      *
-     * @unreleased
+     * @since 1.0.0
      *
      * @return void|SkipValidationRules
      */

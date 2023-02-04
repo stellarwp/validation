@@ -10,7 +10,7 @@ use StellarWP\Validation\Contracts\Sanitizer;
 /**
  * A tool for taking in a set of values and corresponding validation rules, and then validating the values.
  *
- * @unreleased
+ * @since 1.0.0
  */
 class Validator
 {
@@ -45,7 +45,7 @@ class Validator
     private $ranValidationRules = false;
 
     /**
-     * @unreleased
+     * @since 1.0.0
      *
      * @param array<string, ValidationRuleSet|array> $ruleSets
      * @param array<string, mixed> $values
@@ -73,7 +73,7 @@ class Validator
     /**
      * Returns whether the values failed validation or not.
      *
-     * @unreleased
+     * @since 1.0.0
      */
     public function fails(): bool
     {
@@ -83,7 +83,7 @@ class Validator
     /**
      * Returns whether the values passed validation or not.
      *
-     * @unreleased
+     * @since 1.0.0
      */
     public function passes(): bool
     {
@@ -96,7 +96,7 @@ class Validator
      * Runs the validation rules on the values, and stores any resulting errors.
      * Will run only once, and then store the results for subsequent calls.
      *
-     * @unreleased
+     * @since 1.0.0
      *
      * @return void
      */
@@ -135,7 +135,7 @@ class Validator
     /**
      * Returns the errors that were found during validation.
      *
-     * @unreleased
+     * @since 1.0.0
      *
      * @return array<string, string>
      */
@@ -149,7 +149,7 @@ class Validator
     /**
      * Returns the validated values, with any sanitization rules applied.
      *
-     * @unreleased
+     * @since 1.0.0
      */
     public function validated(): array
     {

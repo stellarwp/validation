@@ -13,7 +13,7 @@ class Currency implements ValidationRule, ValidatesOnFrontEnd
     /**
      * @inheritDoc
      *
-     * @unreleased
+     * @since 1.0.0
      */
     public static function id(): string
     {
@@ -23,7 +23,7 @@ class Currency implements ValidationRule, ValidatesOnFrontEnd
     /**
      * @inheritDoc
      *
-     * @unreleased
+     * @since 1.0.0
      */
     public static function fromString(string $options = null): ValidationRule
     {
@@ -33,7 +33,7 @@ class Currency implements ValidationRule, ValidatesOnFrontEnd
     /**
      * @inheritDoc
      *
-     * @unreleased
+     * @since 1.0.0
      */
     public function serializeOption()
     {
@@ -43,7 +43,7 @@ class Currency implements ValidationRule, ValidatesOnFrontEnd
     /**
      * @inheritDoc
      *
-     * @unreleased
+     * @since 1.0.0
      */
     public function __invoke($value, Closure $fail, string $key, array $values)
     {
@@ -53,7 +53,7 @@ class Currency implements ValidationRule, ValidatesOnFrontEnd
     }
 
     /**
-     * @unreleased
+     * @since 1.0.0
      *
      * @return string[]
      */
