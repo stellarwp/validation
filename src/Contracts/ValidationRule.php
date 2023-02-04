@@ -5,13 +5,14 @@ declare(strict_types=1);
 namespace StellarWP\Validation\Contracts;
 
 use Closure;
+use StellarWP\Validation\Commands\ExcludeValue;
 
 interface ValidationRule
 {
     /**
      * The unique id of the validation rule.
      *
-     * @unreleased
+     * @since 1.0.0
      */
     public static function id(): string;
 
@@ -21,7 +22,7 @@ interface ValidationRule
      *
      * If a value is provided after the colon, it will be the options' parameter.
      *
-     * @unreleased
+     * @since 1.0.0
      */
     public static function fromString(string $options = null): ValidationRule;
 
@@ -30,8 +31,9 @@ interface ValidationRule
      * with the error message. Use {field} to reference the field name in the error message.
      *
      * @unreleased
+     * @since 1.0.0
      *
-     * @return void
+     * @return void|ExcludeValue
      */
     public function __invoke($value, Closure $fail, string $key, array $values);
 }

@@ -6,6 +6,7 @@ namespace StellarWP\Validation;
 
 use StellarWP\Validation\Rules\Currency;
 use StellarWP\Validation\Rules\Email;
+use StellarWP\Validation\Rules\Exclude;
 use StellarWP\Validation\Rules\Integer;
 use StellarWP\Validation\Rules\Max;
 use StellarWP\Validation\Rules\Min;
@@ -24,6 +25,7 @@ class ServiceProvider
         Integer::class,
         Email::class,
         Currency::class,
+        Exclude::class,
     ];
 
     /**

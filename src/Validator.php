@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace StellarWP\Validation;
 
+use StellarWP\Validation\Commands\ExcludeValue;
 use StellarWP\Validation\Contracts\Sanitizer;
 
 /**
@@ -134,7 +135,12 @@ class Validator
             };
 
             foreach ($ruleSet as $rule) {
-                $rule($value, $fail, $key, $this->values);
+                $exclude = $rule($value, $fail, $key, $this->values);
+
+                if ($exclude instanceof ExcludeValue) {
+                    // Skip the rest of the rule and do not store the value
+                    continue 2;
+                }
 
                 if ($rule instanceof Sanitizer) {
                     $value = $rule->sanitize($value);

@@ -6,6 +6,7 @@ namespace StellarWP\Validation\Tests\Unit;
 
 use Closure;
 use InvalidArgumentException;
+use StellarWP\Validation\Commands\ExcludeValue;
 use StellarWP\Validation\Config;
 use StellarWP\Validation\Contracts\Sanitizer;
 use StellarWP\Validation\Contracts\ValidationRule;
@@ -16,7 +17,7 @@ use StellarWP\Validation\Validator;
 /**
  * @covers \StellarWP\Validation\Validator
  *
- * @unreleased
+ * @since 1.0.0
  */
 class ValidatorTest extends TestCase
 {
@@ -28,7 +29,7 @@ class ValidatorTest extends TestCase
     }
 
     /**
-     * @unreleased
+     * @since 1.0.0
      */
     public function testValidatorPasses()
     {
@@ -48,7 +49,7 @@ class ValidatorTest extends TestCase
     }
 
     /**
-     * @unreleased
+     * @since 1.0.0
      */
     public function testValidatorAcceptsArraysAsRules()
     {
@@ -64,7 +65,7 @@ class ValidatorTest extends TestCase
     }
 
     /**
-     * @unreleased
+     * @since 1.0.0
      */
     public function testFailingValidations()
     {
@@ -81,7 +82,7 @@ class ValidatorTest extends TestCase
     }
 
     /**
-     * @unreleased
+     * @since 1.0.0
      */
     public function testReturnsErrorsForFailedValidations()
     {
@@ -99,7 +100,7 @@ class ValidatorTest extends TestCase
     }
 
     /**
-     * @unreleased
+     * @since 1.0.0
      */
     public function testUsesLabelsWhenAvailableInErrorMessage()
     {
@@ -120,7 +121,7 @@ class ValidatorTest extends TestCase
     }
 
     /**
-     * @unreleased
+     * @since 1.0.0
      */
     public function testReturnsValidatedValues()
     {
@@ -139,7 +140,7 @@ class ValidatorTest extends TestCase
     }
 
     /**
-     * @unreleased
+     * @since 1.0.0
      */
     public function testValuesWithoutRulesAreOmitted()
     {
@@ -156,7 +157,7 @@ class ValidatorTest extends TestCase
     }
 
     /**
-     * @unreleased
+     * @since 1.0.0
      */
     public function testRuleArraysWithoutRulesAreConsideredOptional()
     {
@@ -178,6 +179,20 @@ class ValidatorTest extends TestCase
     /**
      * @unreleased
      */
+    public function testRulesThatReturnExcludeValuePreventValidation()
+    {
+        $validator = new Validator([
+            'foo' => ['exclude', 'required'],
+        ], [
+            'foo' => '',
+        ]);
+
+        self::assertEquals([], $validator->validated());
+    }
+
+    /**
+     * @since 1.0.0
+     */
     public function testRulesWithSanitizationAreApplied()
     {
         $validator = new Validator([
@@ -195,7 +210,7 @@ class ValidatorTest extends TestCase
     }
 
     /**
-     * @unreleased
+     * @since 1.0.0
      */
     public function testInvalidRulesThrowInvalidArgumentException()
     {
@@ -212,7 +227,7 @@ class ValidatorTest extends TestCase
     }
 
     /**
-     * @unreleased
+     * @since 1.0.0
      */
     public function testRulesWithoutValuesThrowsAnException()
     {
@@ -227,7 +242,7 @@ class ValidatorTest extends TestCase
     /**
      * Adds the validation register to the container, and adds a mock validation rule
      *
-     * @unreleased
+     * @since 1.0.0
      */
     private function mockValidationRulesRegister()
     {
@@ -237,7 +252,8 @@ class ValidatorTest extends TestCase
                 $register = new ValidationRulesRegistrar();
                 $register->register(
                     MockRequiredRule::class,
-                    MockIntegerRule::class
+                    MockIntegerRule::class,
+                    MockExcludeRule::class
                 );
 
                 return $register;
@@ -309,5 +325,23 @@ class MockIntegerRule implements ValidationRule, Sanitizer
     public function sanitize($value)
     {
         return (int)$value;
+    }
+}
+
+class MockExcludeRule implements ValidationRule
+{
+    public static function id(): string
+    {
+        return 'exclude';
+    }
+
+    public static function fromString(string $options = null): ValidationRule
+    {
+        return new self();
+    }
+
+    public function __invoke($value, Closure $fail, string $key, array $values)
+    {
+        return new ExcludeValue();
     }
 }
