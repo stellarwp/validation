@@ -9,7 +9,7 @@ interface ValidatesOnFrontEnd
     /**
      * Serializes the rule option for use on the front-end.
      *
-     * @unreleased
+     * @since 1.0.0
      *
      * @return int|float|string|bool|array|null
      */

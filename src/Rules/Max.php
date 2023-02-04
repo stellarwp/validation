@@ -11,7 +11,7 @@ use StellarWP\Validation\Contracts\ValidationRule;
 use StellarWP\Validation\Exceptions\ValidationException;
 
 /**
- * @unreleased
+ * @since 1.0.0
  */
 class Max implements ValidationRule, ValidatesOnFrontEnd
 {
@@ -21,7 +21,7 @@ class Max implements ValidationRule, ValidatesOnFrontEnd
     private $size;
 
     /**
-     * @unreleased
+     * @since 1.0.0
      */
     public function __construct(int $size)
     {
@@ -35,7 +35,7 @@ class Max implements ValidationRule, ValidatesOnFrontEnd
     /**
      * @inheritDoc
      *
-     * @unreleased
+     * @since 1.0.0
      */
     public static function id(): string
     {
@@ -45,7 +45,7 @@ class Max implements ValidationRule, ValidatesOnFrontEnd
     /**
      * @inheritDoc
      *
-     * @unreleased
+     * @since 1.0.0
      */
     public static function fromString(string $options = null): ValidationRule
     {
@@ -59,7 +59,7 @@ class Max implements ValidationRule, ValidatesOnFrontEnd
     /**
      * @inheritDoc
      *
-     * @unreleased
+     * @since 1.0.0
      *
      * @throws ValidationException
      */
@@ -81,7 +81,7 @@ class Max implements ValidationRule, ValidatesOnFrontEnd
     /**
      * @inheritDoc
      *
-     * @unreleased
+     * @since 1.0.0
      */
     public function serializeOption(): int
     {
@@ -89,7 +89,7 @@ class Max implements ValidationRule, ValidatesOnFrontEnd
     }
 
     /**
-     * @unreleased
+     * @since 1.0.0
      */
     public function getSize(): int
     {
@@ -97,7 +97,7 @@ class Max implements ValidationRule, ValidatesOnFrontEnd
     }
 
     /**
-     * @unreleased
+     * @since 1.0.0
      *
      * @return void
      */

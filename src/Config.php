@@ -14,7 +14,7 @@ use StellarWP\Validation\Exceptions\ValidationException;
  * Sets up the validation library for use within the application. It provides a way of overriding various parts of the
  * library to better integrate into the adopting application.
  *
- * @unreleased
+ * @since 1.0.0
  */
 class Config
 {
@@ -44,7 +44,7 @@ class Config
     private static $initialized = false;
 
     /**
-     * @unreleased
+     * @since 1.0.0
      *
      * @param ContainerInterface $container
      */
@@ -54,7 +54,7 @@ class Config
     }
 
     /**
-     * @unreleased
+     * @since 1.0.0
      *
      * @return ContainerInterface
      */
@@ -64,7 +64,7 @@ class Config
     }
 
     /**
-     * @unreleased
+     * @since 1.0.0
      */
     public static function getHookPrefix(): string
     {
@@ -72,7 +72,7 @@ class Config
     }
 
     /**
-     * @unreleased
+     * @since 1.0.0
      */
     public static function setHookPrefix(string $prefix)
     {
@@ -80,7 +80,7 @@ class Config
     }
 
     /**
-     * @unreleased
+     * @since 1.0.0
      *
      * @throws ValidationExceptionInterface
      */
@@ -90,7 +90,7 @@ class Config
     }
 
     /**
-     * @unreleased
+     * @since 1.0.0
      *
      * @return class-string<ValidationExceptionInterface>
      */
@@ -100,7 +100,7 @@ class Config
     }
 
     /**
-     * @unreleased
+     * @since 1.0.0
      *
      * @param class-string<ValidationException> $validationExceptionClass
      */
@@ -116,7 +116,7 @@ class Config
     }
 
     /**
-     * @unreleased
+     * @since 1.0.0
      *
      * @throws InvalidArgumentException
      */
@@ -126,7 +126,7 @@ class Config
     }
 
     /**
-     * @unreleased
+     * @since 1.0.0
      *
      * @return class-string<InvalidArgumentException>
      */
@@ -136,7 +136,7 @@ class Config
     }
 
     /**
-     * @unreleased
+     * @since 1.0.0
      *
      * @param class-string<InvalidArgumentException> $invalidArgumentExceptionClass
      */
@@ -152,7 +152,7 @@ class Config
     }
 
     /**
-     * @unreleased
+     * @since 1.0.0
      *
      * @return void
      */

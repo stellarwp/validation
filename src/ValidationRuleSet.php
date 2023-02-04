@@ -28,7 +28,7 @@ class ValidationRuleSet implements IteratorAggregate, JsonSerializable
     private $rules = [];
 
     /**
-     * @unreleased
+     * @since 1.0.0
      */
     public function __construct(ValidationRulesRegistrar $register)
     {
@@ -38,7 +38,7 @@ class ValidationRuleSet implements IteratorAggregate, JsonSerializable
     /**
      * Pass a set of validation rules in the form of the rule id, a rule instance, or a closure.
      *
-     * @unreleased
+     * @since 1.0.0
      *
      * @param string|ValidationRule|Closure ...$rules
      */
@@ -68,7 +68,7 @@ class ValidationRuleSet implements IteratorAggregate, JsonSerializable
     /**
      * Validates that a closure rule has the proper parameters to be used as a validation rule.
      *
-     * @unreleased
+     * @since 1.0.0
      *
      * @return void
      */
@@ -116,7 +116,7 @@ class ValidationRuleSet implements IteratorAggregate, JsonSerializable
     /**
      * Retrieves the parameter type with PHP 7.0 compatibility.
      *
-     * @unreleased
+     * @since 1.0.0
      *
      * @return string|null
      */
@@ -139,7 +139,7 @@ class ValidationRuleSet implements IteratorAggregate, JsonSerializable
     /**
      * Takes a validation rule string and returns the corresponding rule instance.
      *
-     * @unreleased
+     * @since 1.0.0
      */
     private function getRuleFromString(string $rule): ValidationRule
     {
@@ -181,7 +181,7 @@ class ValidationRuleSet implements IteratorAggregate, JsonSerializable
     /**
      * Removes the rules with the given id.
      *
-     * @unreleased
+     * @since 1.0.0
      *
      * @return void
      */
@@ -197,7 +197,7 @@ class ValidationRuleSet implements IteratorAggregate, JsonSerializable
     /**
      * Returns the validation rules.
      *
-     * @unreleased
+     * @since 1.0.0
      */
     public function getRules(): array
     {
@@ -207,7 +207,7 @@ class ValidationRuleSet implements IteratorAggregate, JsonSerializable
     /**
      * Returns whether the given rule is present in the validation rules. Does not work with Closure Rules.
      *
-     * @unreleased
+     * @since 1.0.0
      */
     public function hasRule(string $rule): bool
     {
@@ -223,7 +223,7 @@ class ValidationRuleSet implements IteratorAggregate, JsonSerializable
     /**
      * Returns whether the array has any rules set.
      *
-     * @unreleased
+     * @since 1.0.0
      */
     public function hasRules(): bool
     {
@@ -233,7 +233,7 @@ class ValidationRuleSet implements IteratorAggregate, JsonSerializable
     /**
      * Along with the IteratorAggregate interface, we can iterate over the validation rules.
      *
-     * @unreleased
+     * @since 1.0.0
      *
      * @inheritDoc
      */
@@ -253,7 +253,7 @@ class ValidationRuleSet implements IteratorAggregate, JsonSerializable
      *
      * @inheritDoc
      *
-     * @unreleased
+     * @since 1.0.0
      */
     public function jsonSerialize()
     {

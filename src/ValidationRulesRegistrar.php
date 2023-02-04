@@ -8,7 +8,7 @@ use StellarWP\Exceptions\Primitives\InvalidArgumentException;
 use StellarWP\Validation\Contracts\ValidationRule;
 
 /**
- * @unreleased
+ * @since 1.0.0
  */
 class ValidationRulesRegistrar
 {
@@ -18,7 +18,7 @@ class ValidationRulesRegistrar
     /**
      * Register one or many validation rules.
      *
-     * @unreleased
+     * @since 1.0.0
      */
     public function register(string ...$rules): self
     {
@@ -32,7 +32,7 @@ class ValidationRulesRegistrar
     /**
      * Register a validation rule.
      *
-     * @unreleased
+     * @since 1.0.0
      */
     private function registerClass(string $class): self
     {

@@ -9,14 +9,14 @@ use StellarWP\Validation\Contracts\ValidatesOnFrontEnd;
 use StellarWP\Validation\Contracts\ValidationRule;
 
 /**
- * @unreleased
+ * @since 1.0.0
  */
 class Email implements ValidationRule, ValidatesOnFrontEnd
 {
     /**
      * @inheritDoc
      *
-     * @unreleased
+     * @since 1.0.0
      */
     public static function id(): string
     {
@@ -26,7 +26,7 @@ class Email implements ValidationRule, ValidatesOnFrontEnd
     /**
      * @inheritDoc
      *
-     * @unreleased
+     * @since 1.0.0
      */
     public static function fromString(string $options = null): ValidationRule
     {
@@ -44,7 +44,7 @@ class Email implements ValidationRule, ValidatesOnFrontEnd
     /**
      * @inheritDoc
      *
-     * @unreleased
+     * @since 1.0.0
      */
     public function __invoke($value, Closure $fail, string $key, array $values)
     {
