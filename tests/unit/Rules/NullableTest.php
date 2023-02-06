@@ -18,7 +18,7 @@ class NullableTest extends TestCase
         $rule = new Nullable();
 
         // Passes when value is null and skips remaining tests
-        self::assertValidationRulePassed($rule, null, 'foo', ['foo' => null]);
+        self::assertValidationRulePassed($rule, null);
         self::assertValidationRuleDoesReturnCommandInstance($rule, SkipValidationRules::class, null);
 
         // Passes on any other value but does not skip remaining tests
