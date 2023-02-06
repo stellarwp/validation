@@ -50,6 +50,6 @@ class Nullable implements ValidationRule, ValidatesOnFrontEnd
      */
     public function serializeOption()
     {
-        // TODO: Implement serializeOption() method.
+        return null;
     }
 }
