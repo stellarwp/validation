@@ -10,7 +10,7 @@ use StellarWP\Validation\Tests\TestCase;
 class IntegerTest extends TestCase
 {
     /**
-     * @unreleased
+     * @since 1.1.0
      *
      * @dataProvider integersProvider
      */
@@ -26,7 +26,7 @@ class IntegerTest extends TestCase
     }
 
     /**
-     * @unreleased
+     * @since 1.1.0
      */
     public function testCastsToInteger()
     {
@@ -35,7 +35,7 @@ class IntegerTest extends TestCase
     }
 
     /**
-     * @unreleased
+     * @since 1.1.0
      */
     public function integersProvider(): array
     {

@@ -17,7 +17,7 @@ use StellarWP\Validation\Validator;
 /**
  * @covers \StellarWP\Validation\Validator
  *
- * @unreleased
+ * @since 1.1.0
  */
 class ValidatorTest extends TestCase
 {
@@ -29,7 +29,7 @@ class ValidatorTest extends TestCase
     }
 
     /**
-     * @unreleased
+     * @since 1.1.0
      */
     public function testValidatorPasses()
     {
@@ -49,7 +49,7 @@ class ValidatorTest extends TestCase
     }
 
     /**
-     * @unreleased
+     * @since 1.1.0
      */
     public function testValidatorAcceptsArraysAsRules()
     {
@@ -65,7 +65,7 @@ class ValidatorTest extends TestCase
     }
 
     /**
-     * @unreleased
+     * @since 1.1.0
      */
     public function testFailingValidations()
     {
@@ -82,7 +82,7 @@ class ValidatorTest extends TestCase
     }
 
     /**
-     * @unreleased
+     * @since 1.1.0
      */
     public function testReturnsErrorsForFailedValidations()
     {
@@ -100,7 +100,7 @@ class ValidatorTest extends TestCase
     }
 
     /**
-     * @unreleased
+     * @since 1.1.0
      */
     public function testUsesLabelsWhenAvailableInErrorMessage()
     {
@@ -121,7 +121,7 @@ class ValidatorTest extends TestCase
     }
 
     /**
-     * @unreleased
+     * @since 1.1.0
      */
     public function testReturnsValidatedValues()
     {
@@ -140,7 +140,7 @@ class ValidatorTest extends TestCase
     }
 
     /**
-     * @unreleased
+     * @since 1.1.0
      */
     public function testValuesWithoutRulesAreOmitted()
     {
@@ -157,7 +157,7 @@ class ValidatorTest extends TestCase
     }
 
     /**
-     * @unreleased
+     * @since 1.1.0
      */
     public function testRuleArraysWithoutRulesAreConsideredOptional()
     {
@@ -177,7 +177,7 @@ class ValidatorTest extends TestCase
     }
 
     /**
-     * @unreleased
+     * @since 1.1.0
      */
     public function testRulesWithSanitizationAreApplied()
     {
@@ -196,7 +196,7 @@ class ValidatorTest extends TestCase
     }
 
     /**
-     * @unreleased
+     * @since 1.1.0
      */
     public function testWithSkipValidationRulesSkipsRemainingRules()
     {
@@ -215,7 +215,7 @@ class ValidatorTest extends TestCase
     }
 
     /**
-     * @unreleased
+     * @since 1.1.0
      */
     public function testInvalidRulesThrowInvalidArgumentException()
     {
@@ -234,7 +234,7 @@ class ValidatorTest extends TestCase
     /**
      * Adds the validation register to the container, and adds a mock validation rule
      *
-     * @unreleased
+     * @since 1.1.0
      */
     private function mockValidationRulesRegister()
     {

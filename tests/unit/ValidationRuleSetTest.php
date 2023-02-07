@@ -14,12 +14,12 @@ use StellarWP\Validation\ValidationRulesRegistrar;
 /**
  * @covers ValidationRuleSet
  *
- * @unreleased
+ * @since 1.1.0
  */
 class ValidationRuleSetTest extends TestCase
 {
     /**
-     * @unreleased
+     * @since 1.1.0
      */
     public function testRulesCanBePassedAsStrings()
     {
@@ -30,7 +30,7 @@ class ValidationRuleSetTest extends TestCase
     }
 
     /**
-     * @unreleased
+     * @since 1.1.0
      */
     public function testRulesCanBePassedAsInstances()
     {
@@ -41,7 +41,7 @@ class ValidationRuleSetTest extends TestCase
     }
 
     /**
-     * @unreleased
+     * @since 1.1.0
      */
     public function testRulesCanBePassedAsClosures()
     {
@@ -53,7 +53,7 @@ class ValidationRuleSetTest extends TestCase
     }
 
     /**
-     * @unreleased
+     * @since 1.1.0
      */
     public function testCheckingHasRule()
     {
@@ -66,7 +66,7 @@ class ValidationRuleSetTest extends TestCase
     }
 
     /**
-     * @unreleased
+     * @since 1.1.0
      */
     public function testGettingARule()
     {
@@ -79,7 +79,7 @@ class ValidationRuleSetTest extends TestCase
     }
 
     /**
-     * @unreleased
+     * @since 1.1.0
      */
     public function testGettingAllRules()
     {
@@ -90,7 +90,7 @@ class ValidationRuleSetTest extends TestCase
     }
 
     /**
-     * @unreleased
+     * @since 1.1.0
      */
     public function testForgettingARule()
     {
@@ -103,7 +103,7 @@ class ValidationRuleSetTest extends TestCase
     }
 
     /**
-     * @unreleased
+     * @since 1.1.0
      */
     public function testRulesCanBeSerializedToJson()
     {
@@ -120,7 +120,7 @@ class ValidationRuleSetTest extends TestCase
     }
 
     /**
-     * @unreleased
+     * @since 1.1.0
      */
     public function testRulesAreIterable()
     {
@@ -128,7 +128,7 @@ class ValidationRuleSetTest extends TestCase
     }
 
     /**
-     * @unreleased
+     * @since 1.1.0
      */
     public function testClosuresMustHaveAtLeastTwoParameters()
     {
@@ -141,7 +141,7 @@ class ValidationRuleSetTest extends TestCase
     }
 
     /**
-     * @unreleased
+     * @since 1.1.0
      */
     public function testClosureMustHaveAtMostFourParameters()
     {
@@ -154,7 +154,7 @@ class ValidationRuleSetTest extends TestCase
     }
 
     /**
-     * @unreleased
+     * @since 1.1.0
      */
     public function testClosureSecondParameterMustBeClosure()
     {
@@ -169,7 +169,7 @@ class ValidationRuleSetTest extends TestCase
     }
 
     /**
-     * @unreleased
+     * @since 1.1.0
      */
     public function testClosureThirdParameterMustBeString()
     {
@@ -182,7 +182,7 @@ class ValidationRuleSetTest extends TestCase
     }
 
     /**
-     * @unreleased
+     * @since 1.1.0
      */
     public function testClosureFourthParameterMustBeArray()
     {
@@ -195,7 +195,7 @@ class ValidationRuleSetTest extends TestCase
     }
 
     /**
-     * @unreleased
+     * @since 1.1.0
      */
     private function getMockRulesRegister(): ValidationRulesRegistrar
     {

@@ -12,12 +12,12 @@ use StellarWP\Validation\Contracts\ValidationRule;
 /**
  * This rule marks a field as optional and skips further validation if the rule is either null or an empty string.
  *
- * @unreleased
+ * @since 1.1.0
  */
 class Optional implements ValidationRule, ValidatesOnFrontEnd
 {
     /**
-     * @unreleased
+     * @since 1.1.0
      */
     public static function id(): string
     {
@@ -25,7 +25,7 @@ class Optional implements ValidationRule, ValidatesOnFrontEnd
     }
 
     /**
-     * @unreleased
+     * @since 1.1.0
      */
     public static function fromString(string $options = null): ValidationRule
     {
@@ -33,7 +33,7 @@ class Optional implements ValidationRule, ValidatesOnFrontEnd
     }
 
     /**
-     * @unreleased
+     * @since 1.1.0
      *
      * @return SkipValidationRules|void
      */
@@ -45,7 +45,7 @@ class Optional implements ValidationRule, ValidatesOnFrontEnd
     }
 
     /**
-     * @unreleased
+     * @since 1.1.0
      */
     public function serializeOption()
     {
