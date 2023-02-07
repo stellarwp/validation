@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace StellarWP\Validation\Contracts;
 
 use Closure;
+use StellarWP\Validation\Commands\SkipValidationRules;
 
 interface ValidationRule
 {
@@ -31,7 +32,7 @@ interface ValidationRule
      *
      * @since 1.0.0
      *
-     * @return void
+     * @return void|SkipValidationRules
      */
     public function __invoke($value, Closure $fail, string $key, array $values);
 }
