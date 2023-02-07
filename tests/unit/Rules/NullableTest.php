@@ -11,7 +11,7 @@ use StellarWP\Validation\Tests\TestCase;
 class NullableTest extends TestCase
 {
     /**
-     * @unreleased
+     * @since 1.1.0
      */
     public function testNullableValidation()
     {
