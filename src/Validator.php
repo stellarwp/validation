@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace StellarWP\Validation;
 
+use StellarWP\Validation\Commands\SkipValidationRules;
 use StellarWP\Validation\Contracts\Sanitizer;
 
 /**
@@ -51,8 +52,6 @@ class Validator
      */
     public function __construct(array $ruleSets, array $values, array $labels = [])
     {
-        $this->validateRulesAndValues($ruleSets, $values);
-
         $validatedRules = [];
         foreach ($ruleSets as $key => $rule) {
             if (is_array($rule)) {
@@ -69,24 +68,6 @@ class Validator
         $this->ruleSets = $validatedRules;
         $this->values = $values;
         $this->labels = $labels;
-    }
-
-    /**
-     * Validates that all rules have a corresponding value with the same key.
-     *
-     * @since 1.0.0
-     *
-     * @return void
-     */
-    private function validateRulesAndValues(array $rules, array $values)
-    {
-        $missingKeys = array_diff_key($rules, $values);
-
-        if (!empty($missingKeys)) {
-            Config::throwInvalidArgumentException(
-                "Missing values for rules: " . implode(', ', array_keys($missingKeys))
-            );
-        }
     }
 
     /**
@@ -134,7 +115,11 @@ class Validator
             };
 
             foreach ($ruleSet as $rule) {
-                $rule($value, $fail, $key, $this->values);
+                $command = $rule($value, $fail, $key, $this->values);
+
+                if ($command instanceof SkipValidationRules) {
+                    break;
+                }
 
                 if ($rule instanceof Sanitizer) {
                     $value = $rule->sanitize($value);
