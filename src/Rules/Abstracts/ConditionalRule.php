@@ -4,15 +4,32 @@ declare(strict_types=1);
 
 namespace StellarWP\Validation\Rules\Abstracts;
 
-use StellarWP\Validation\Concerns\HasConditions;
-use StellarWP\Validation\Conditions\BasicCondition;
+use StellarWP\FieldConditions\ComplexConditionSet;
+use StellarWP\FieldConditions\Contracts\Condition;
+use StellarWP\FieldConditions\Contracts\ConditionSet;
+use StellarWP\FieldConditions\SimpleConditionSet;
 use StellarWP\Validation\Config;
 use StellarWP\Validation\Contracts\ValidatesOnFrontEnd;
 use StellarWP\Validation\Contracts\ValidationRule;
 
 abstract class ConditionalRule implements ValidationRule, ValidatesOnFrontEnd
 {
-    use HasConditions;
+    /**
+     * @var ConditionSet
+     */
+    protected $conditions;
+
+    /**
+     * @param ConditionSet|Condition[] $conditions
+     */
+    public function __construct($conditions)
+    {
+        if ($conditions instanceof ConditionSet) {
+            $this->conditions = $conditions;
+        } else {
+            $this->conditions = new ComplexConditionSet(...$conditions);
+        }
+    }
 
     /**
      * Supports a simple syntax for defining conditions. Example:
@@ -20,7 +37,7 @@ abstract class ConditionalRule implements ValidationRule, ValidatesOnFrontEnd
      *
      * Each rule is assumed to be a basic condition with an equals operator.
      *
-     * @inheritDoc
+     * @unreleased
      */
     public static function fromString(string $options = null): ValidationRule
     {
@@ -30,7 +47,7 @@ abstract class ConditionalRule implements ValidationRule, ValidatesOnFrontEnd
 
         $rules = explode(';', $options);
 
-        $conditions = [];
+        $conditionSet = new SimpleConditionSet();
         foreach ($rules as $rule) {
             $rule = explode(',', $rule);
 
@@ -38,10 +55,10 @@ abstract class ConditionalRule implements ValidationRule, ValidatesOnFrontEnd
                 Config::throwInvalidArgumentException(static::class . ' rule requires one field name and one value');
             }
 
-            $conditions[] = new BasicCondition($rule[0], '=', $rule[1]);
+            $conditionSet->and($rule[0], '=', $rule[1]);
         }
 
-        return new static(...$conditions);
+        return new static($conditionSet);
     }
 
     public function serializeOption()
