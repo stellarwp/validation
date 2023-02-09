@@ -10,7 +10,7 @@ use StellarWP\Validation\Tests\TestCase;
 class EmailTest extends TestCase
 {
     /**
-     * @unreleased
+     * @since 1.1.0
      *
      * @dataProvider emailsProvider
      */
@@ -26,7 +26,7 @@ class EmailTest extends TestCase
     }
 
     /**
-     * @unreleased
+     * @since 1.1.0
      *
      * @return array<int, array<mixed, bool>>
      */

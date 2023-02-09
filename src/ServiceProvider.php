@@ -10,7 +10,9 @@ use StellarWP\Validation\Rules\Exclude;
 use StellarWP\Validation\Rules\Integer;
 use StellarWP\Validation\Rules\Max;
 use StellarWP\Validation\Rules\Min;
+use StellarWP\Validation\Rules\Nullable;
 use StellarWP\Validation\Rules\Numeric;
+use StellarWP\Validation\Rules\Optional;
 use StellarWP\Validation\Rules\Required;
 use StellarWP\Validation\Rules\Size;
 
@@ -26,6 +28,8 @@ class ServiceProvider
         Email::class,
         Currency::class,
         Exclude::class,
+        Nullable::class,
+        Optional::class,
     ];
 
     /**

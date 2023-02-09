@@ -7,6 +7,7 @@ namespace StellarWP\Validation\Tests\Unit;
 use Closure;
 use InvalidArgumentException;
 use StellarWP\Validation\Commands\ExcludeValue;
+use StellarWP\Validation\Commands\SkipValidationRules;
 use StellarWP\Validation\Config;
 use StellarWP\Validation\Contracts\Sanitizer;
 use StellarWP\Validation\Contracts\ValidationRule;
@@ -210,6 +211,25 @@ class ValidatorTest extends TestCase
     }
 
     /**
+     * @since 1.1.0
+     */
+    public function testWithSkipValidationRulesSkipsRemainingRules()
+    {
+        $validator = new Validator([
+            'foo' => ['skip', 'required'],
+            'bar' => ['required'],
+        ], [
+            'foo' => '',
+            'bar' => 'bar',
+        ]);
+
+        self::assertSame([
+            'foo' => '',
+            'bar' => 'bar',
+        ], $validator->validated());
+    }
+
+    /**
      * @since 1.0.0
      */
     public function testInvalidRulesThrowInvalidArgumentException()
@@ -227,19 +247,6 @@ class ValidatorTest extends TestCase
     }
 
     /**
-     * @since 1.0.0
-     */
-    public function testRulesWithoutValuesThrowsAnException()
-    {
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('Missing values for rules');
-
-        new Validator([
-            'foo' => ['required'],
-        ], []);
-    }
-
-    /**
      * Adds the validation register to the container, and adds a mock validation rule
      *
      * @since 1.0.0
@@ -253,12 +260,31 @@ class ValidatorTest extends TestCase
                 $register->register(
                     MockRequiredRule::class,
                     MockIntegerRule::class,
-                    MockExcludeRule::class
+                    MockExcludeRule::class,
+                    MockSkipRule::class
                 );
 
                 return $register;
             }
         );
+    }
+}
+
+class MockSkipRule implements ValidationRule
+{
+    public static function id(): string
+    {
+        return 'skip';
+    }
+
+    public static function fromString(string $options = null): ValidationRule
+    {
+        return new self();
+    }
+
+    public function __invoke($value, Closure $fail, string $key, array $values): SkipValidationRules
+    {
+        return new SkipValidationRules();
     }
 }
 

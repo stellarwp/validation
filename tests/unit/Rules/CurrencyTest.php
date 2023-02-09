@@ -9,7 +9,7 @@ use StellarWP\Validation\Tests\TestCase;
 class CurrencyTest extends TestCase
 {
     /**
-     * @unreleased
+     * @since 1.1.0
      * @dataProvider currencyProvider
      */
     public function testCurrencyValidations($currency, $shouldPass)
@@ -24,7 +24,7 @@ class CurrencyTest extends TestCase
     }
 
     /**
-     * @unreleased
+     * @since 1.1.0
      */
     public function currencyProvider(): array
     {

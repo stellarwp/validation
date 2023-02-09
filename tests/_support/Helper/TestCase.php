@@ -66,6 +66,36 @@ class TestCase extends Unit
         self::assertValidationRulePassed($rule, $value, $key, $values, false);
     }
 
+    public static function assertValidationRuleDoesReturnCommandInstance(
+        ValidationRule $rule,
+        string $commandClass,
+        $value = null,
+        string $key = '',
+        array $values = []
+    ) {
+        $fail = static function () {
+        };
+
+        $command = $rule($value, $fail, $key, $values);
+
+        self::assertInstanceOf($commandClass, $command);
+    }
+
+    public static function assertValidationRuleDoesNotReturnCommandInstance(
+        ValidationRule $rule,
+        string $commandClass,
+        $value = null,
+        string $key = '',
+        array $values = []
+    ) {
+        $fail = static function () {
+        };
+
+        $command = $rule($value, $fail, $key, $values);
+
+        self::assertNotInstanceOf($commandClass, $command);
+    }
+
     public static function assertIsIterable($actual, $message = '')
     {
         if (\function_exists('is_iterable') === true) {

@@ -9,7 +9,7 @@ use StellarWP\Validation\Tests\TestCase;
 class NumericTest extends TestCase
 {
     /**
-     * @unreleased
+     * @since 1.1.0
      */
     public function testShouldPassWhenValueIsNumeric()
     {
@@ -22,7 +22,7 @@ class NumericTest extends TestCase
     }
 
     /**
-     * @unreleased
+     * @since 1.1.0
      */
     public function testShouldFailWhenValueIsNotNumeric()
     {

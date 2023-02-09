@@ -5,12 +5,13 @@ declare(strict_types=1);
 namespace StellarWP\Validation;
 
 use StellarWP\Validation\Commands\ExcludeValue;
+use StellarWP\Validation\Commands\SkipValidationRules;
 use StellarWP\Validation\Contracts\Sanitizer;
 
 /**
  * A tool for taking in a set of values and corresponding validation rules, and then validating the values.
  *
- * @unreleased
+ * @since 1.0.0
  */
 class Validator
 {
@@ -45,15 +46,13 @@ class Validator
     private $ranValidationRules = false;
 
     /**
-     * @unreleased
+     * @since 1.0.0
      *
      * @param array<string, ValidationRuleSet|array> $ruleSets
      * @param array<string, mixed> $values
      */
     public function __construct(array $ruleSets, array $values, array $labels = [])
     {
-        $this->validateRulesAndValues($ruleSets, $values);
-
         $validatedRules = [];
         foreach ($ruleSets as $key => $rule) {
             if (is_array($rule)) {
@@ -73,27 +72,9 @@ class Validator
     }
 
     /**
-     * Validates that all rules have a corresponding value with the same key.
-     *
-     * @unreleased
-     *
-     * @return void
-     */
-    private function validateRulesAndValues(array $rules, array $values)
-    {
-        $missingKeys = array_diff_key($rules, $values);
-
-        if (!empty($missingKeys)) {
-            Config::throwInvalidArgumentException(
-                "Missing values for rules: " . implode(', ', array_keys($missingKeys))
-            );
-        }
-    }
-
-    /**
      * Returns whether the values failed validation or not.
      *
-     * @unreleased
+     * @since 1.0.0
      */
     public function fails(): bool
     {
@@ -103,7 +84,7 @@ class Validator
     /**
      * Returns whether the values passed validation or not.
      *
-     * @unreleased
+     * @since 1.0.0
      */
     public function passes(): bool
     {
@@ -116,7 +97,7 @@ class Validator
      * Runs the validation rules on the values, and stores any resulting errors.
      * Will run only once, and then store the results for subsequent calls.
      *
-     * @unreleased
+     * @since 1.0.0
      *
      * @return void
      */
@@ -135,9 +116,13 @@ class Validator
             };
 
             foreach ($ruleSet as $rule) {
-                $exclude = $rule($value, $fail, $key, $this->values);
+                $command = $rule($value, $fail, $key, $this->values);
 
-                if ($exclude instanceof ExcludeValue) {
+                if ($command instanceof SkipValidationRules) {
+                    break;
+                }
+
+                if ($command instanceof ExcludeValue) {
                     // Skip the rest of the rule and do not store the value
                     continue 2;
                 }
@@ -156,7 +141,7 @@ class Validator
     /**
      * Returns the errors that were found during validation.
      *
-     * @unreleased
+     * @since 1.0.0
      *
      * @return array<string, string>
      */
@@ -170,7 +155,7 @@ class Validator
     /**
      * Returns the validated values, with any sanitization rules applied.
      *
-     * @unreleased
+     * @since 1.0.0
      */
     public function validated(): array
     {
