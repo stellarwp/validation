@@ -7,12 +7,18 @@ namespace StellarWP\Validation;
 use StellarWP\Validation\Rules\Currency;
 use StellarWP\Validation\Rules\Email;
 use StellarWP\Validation\Rules\Exclude;
+use StellarWP\Validation\Rules\ExcludeIf;
+use StellarWP\Validation\Rules\ExcludeUnless;
 use StellarWP\Validation\Rules\Integer;
 use StellarWP\Validation\Rules\Max;
 use StellarWP\Validation\Rules\Min;
 use StellarWP\Validation\Rules\Nullable;
+use StellarWP\Validation\Rules\NullableIf;
+use StellarWP\Validation\Rules\NullableUnless;
 use StellarWP\Validation\Rules\Numeric;
 use StellarWP\Validation\Rules\Optional;
+use StellarWP\Validation\Rules\OptionalIf;
+use StellarWP\Validation\Rules\OptionalUnless;
 use StellarWP\Validation\Rules\Required;
 use StellarWP\Validation\Rules\Size;
 
@@ -28,8 +34,14 @@ class ServiceProvider
         Email::class,
         Currency::class,
         Exclude::class,
+        ExcludeIf::class,
+        ExcludeUnless::class,
         Nullable::class,
+        NullableIf::class,
+        NullableUnless::class,
         Optional::class,
+        OptionalIf::class,
+        OptionalUnless::class,
     ];
 
     /**

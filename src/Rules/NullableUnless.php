@@ -5,37 +5,35 @@ declare(strict_types=1);
 namespace StellarWP\Validation\Rules;
 
 use Closure;
-use StellarWP\Validation\Commands\ExcludeValue;
+use StellarWP\Validation\Commands\SkipValidationRules;
 use StellarWP\Validation\Rules\Abstracts\ConditionalRule;
 
 /**
- * Exclude a field unless the given conditions are met.
- *
- * @see Exclude
+ * The value is nullable unless the conditions pass.
  *
  * @unreleased
  */
-class ExcludeUnless extends ConditionalRule
+class NullableUnless extends ConditionalRule
 {
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      *
      * @unreleased
      */
     public static function id(): string
     {
-        return 'excludeUnless';
+        return 'nullableIf';
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      *
      * @unreleased
      */
     public function __invoke($value, Closure $fail, string $key, array $values)
     {
-        if ($this->conditions->fails($values)) {
-            return new ExcludeValue();
+        if ($value === null && $this->conditions->passes($values)) {
+            return new SkipValidationRules();
         }
     }
 }
