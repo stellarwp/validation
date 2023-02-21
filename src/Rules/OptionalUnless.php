@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace StellarWP\Validation\Rules;
 
 use Closure;
+use StellarWP\Validation\Commands\SkipValidationRules;
 use StellarWP\Validation\Rules\Abstracts\ConditionalRule;
 
 /**

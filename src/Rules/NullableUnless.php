@@ -32,7 +32,7 @@ class NullableUnless extends ConditionalRule
      */
     public function __invoke($value, Closure $fail, string $key, array $values)
     {
-        if ($value === null && $this->conditions->passes($values)) {
+        if ($value === null && $this->conditions->fails($values)) {
             return new SkipValidationRules();
         }
     }
