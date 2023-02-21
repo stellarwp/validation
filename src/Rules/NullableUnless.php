@@ -22,7 +22,7 @@ class NullableUnless extends ConditionalRule
      */
     public static function id(): string
     {
-        return 'nullableIf';
+        return 'nullableUnless';
     }
 
     /**
