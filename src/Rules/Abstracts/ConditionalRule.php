@@ -61,6 +61,11 @@ abstract class ConditionalRule implements ValidationRule, ValidatesOnFrontEnd
         return new static($conditionSet);
     }
 
+    /**
+     * {@inheritdoc}
+     *
+     * @unreleased
+     */
     public function serializeOption()
     {
         return $this->conditions->jsonSerialize();
