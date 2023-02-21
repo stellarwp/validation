@@ -24,7 +24,7 @@ class ExcludeIf extends ConditionalRule
      */
     public static function id(): string
     {
-        return 'requiredIf';
+        return 'excludeIf';
     }
 
     /**
