@@ -255,6 +255,7 @@ class ValidationRuleSet implements IteratorAggregate, JsonSerializable
      *
      * @since 1.0.0
      */
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         $rules = [];
