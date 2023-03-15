@@ -15,6 +15,7 @@
     ],
     "require": {
         "stellarwp/container-contract": "1.0.4",
+        "stellarwp/field-conditions": "^1.0",
         "ext-json": "*"
     },
     "require-dev": {
