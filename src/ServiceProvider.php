@@ -5,10 +5,12 @@ declare(strict_types=1);
 namespace StellarWP\Validation;
 
 use StellarWP\Validation\Rules\Currency;
+use StellarWP\Validation\Rules\DateTime;
 use StellarWP\Validation\Rules\Email;
 use StellarWP\Validation\Rules\Exclude;
 use StellarWP\Validation\Rules\ExcludeIf;
 use StellarWP\Validation\Rules\ExcludeUnless;
+use StellarWP\Validation\Rules\In;
 use StellarWP\Validation\Rules\Integer;
 use StellarWP\Validation\Rules\Max;
 use StellarWP\Validation\Rules\Min;
@@ -30,6 +32,7 @@ class ServiceProvider
         Max::class,
         Size::class,
         Numeric::class,
+        In::class,
         Integer::class,
         Email::class,
         Currency::class,
@@ -42,6 +45,7 @@ class ServiceProvider
         Optional::class,
         OptionalIf::class,
         OptionalUnless::class,
+        DateTime::class,
     ];
 
     /**
