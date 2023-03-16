@@ -25,7 +25,7 @@ class In implements ValidationRule, ValidatesOnFrontEnd
     /**
      * @unreleased
      */
-    public function __construct(...$acceptedValues)
+    final public function __construct(...$acceptedValues)
     {
         if (empty($acceptedValues)) {
             Config::throwInvalidArgumentException('The In rule requires at least one value to be specified.');
@@ -49,7 +49,7 @@ class In implements ValidationRule, ValidatesOnFrontEnd
             Config::throwInvalidArgumentException('The In rule requires at least one value to be specified.');
         }
 
-        return new self(...$values);
+        return new static(...$values);
     }
 
     /**
@@ -57,7 +57,7 @@ class In implements ValidationRule, ValidatesOnFrontEnd
      */
     public function __invoke($value, Closure $fail, string $key, array $values)
     {
-        if (!in_array($value, $this->acceptedValues, true)) {
+        if (!in_array($value, $this->acceptedValues)) {
             $fail(sprintf(__('%s must be one of %s', '%TEXTDOMAIN%'), '{field}', implode(', ', $this->acceptedValues)));
         }
     }

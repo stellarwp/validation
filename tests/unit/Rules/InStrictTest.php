@@ -1,32 +1,32 @@
 <?php
 
-namespace unit\Rules;
+namespace StellarWP\Validation\Tests\Unit\Rules;
 
 use InvalidArgumentException;
-use StellarWP\Validation\Rules\In;
+use StellarWP\Validation\Rules\InStrict;
 use StellarWP\Validation\Tests\TestCase;
 
-class InTest extends TestCase
+class InStrictTest extends TestCase
 {
     /**
      * @unreleased
      */
-    public function testShouldAllowEquivalentValuesInArray()
+    public function testShouldAllowStrictlyEqualValuesInArray()
     {
-        $rule = new In('foo', 1);
+        $rule = new InStrict('foo', 1);
 
         $this->assertValidationRulePassed($rule, 'foo');
         $this->assertValidationRulePassed($rule, 1);
-        $this->assertValidationRulePassed($rule, '1');
     }
 
     /**
      * @unreleased
      */
-    public function testShouldFailValuesNotInArray()
+    public function testShouldFailStrictlyUnequalValues()
     {
-        $rule = new In('foo', 1);
+        $rule = new InStrict('foo', 1);
 
+        $this->assertValidationRuleFailed($rule, '1');
         $this->assertValidationRuleFailed($rule, 'bar');
         $this->assertValidationRuleFailed($rule, 2);
         $this->assertValidationRuleFailed($rule, false);
@@ -37,11 +37,11 @@ class InTest extends TestCase
      */
     public function testShouldCreateRuleFromCommaDelimitedList()
     {
-        $rule = In::fromString('foo,1');
+        $rule = InStrict::fromString('foo,1');
 
         $this->assertValidationRulePassed($rule, 'foo');
-        $this->assertValidationRulePassed($rule, 1);
         $this->assertValidationRulePassed($rule, '1');
+        $this->assertValidationRuleFailed($rule, 1);
         $this->assertValidationRuleFailed($rule, 'qux');
     }
 
@@ -52,7 +52,7 @@ class InTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
 
-        In::fromString('');
+        InStrict::fromString('');
     }
 
     /**
@@ -62,7 +62,7 @@ class InTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
 
-        new In();
+        new InStrict();
     }
 
     /**
@@ -70,7 +70,7 @@ class InTest extends TestCase
      */
     public function testSerializeOptionShouldRetunValuesArray()
     {
-        $rule = new In('foo', 'bar', 'baz');
+        $rule = new InStrict('foo', 'bar', 'baz');
         $this->assertEquals(['foo', 'bar', 'baz'], $rule->serializeOption());
     }
 }
