@@ -11,6 +11,7 @@ use StellarWP\Validation\Rules\Exclude;
 use StellarWP\Validation\Rules\ExcludeIf;
 use StellarWP\Validation\Rules\ExcludeUnless;
 use StellarWP\Validation\Rules\In;
+use StellarWP\Validation\Rules\InStrict;
 use StellarWP\Validation\Rules\Integer;
 use StellarWP\Validation\Rules\Max;
 use StellarWP\Validation\Rules\Min;
@@ -33,6 +34,7 @@ class ServiceProvider
         Size::class,
         Numeric::class,
         In::class,
+        InStrict::class,
         Integer::class,
         Email::class,
         Currency::class,
