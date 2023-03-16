@@ -13,14 +13,14 @@ use StellarWP\Validation\Rules\Abstracts\ConditionalRule;
  *
  * @see Exclude
  *
- * @unreleased
+ * @since 1.2.0
  */
 class ExcludeIf extends ConditionalRule
 {
     /**
      * @inheritDoc
      *
-     * @unreleased
+     * @since 1.2.0
      */
     public static function id(): string
     {
@@ -30,7 +30,7 @@ class ExcludeIf extends ConditionalRule
     /**
      * @inheritDoc
      *
-     * @unreleased
+     * @since 1.2.0
      *
      * @return ExcludeValue|void
      */

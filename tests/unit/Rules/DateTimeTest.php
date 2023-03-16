@@ -10,7 +10,7 @@ use StellarWP\Validation\Tests\TestCase;
 class DateTimeTest extends TestCase
 {
     /**
-     * @unreleased
+     * @since 1.2.0
      */
     public function testShouldPassDateTimeInstance()
     {
@@ -21,7 +21,7 @@ class DateTimeTest extends TestCase
     }
 
     /**
-     * @unreleased
+     * @since 1.2.0
      */
     public function testShouldPassDateTimeString()
     {
@@ -33,7 +33,7 @@ class DateTimeTest extends TestCase
     }
 
     /**
-     * @unreleased
+     * @since 1.2.0
      */
     public function testShouldFailRelativeDateTimeString()
     {
@@ -45,7 +45,7 @@ class DateTimeTest extends TestCase
     }
 
     /**
-     * @unreleased
+     * @since 1.2.0
      */
     public function testShouldFailInvalidDateTimeStringValues()
     {
@@ -57,7 +57,7 @@ class DateTimeTest extends TestCase
     }
 
     /**
-     * @unreleased
+     * @since 1.2.0
      */
     public function testShouldPassDateTimeStringWithFormat()
     {
@@ -69,7 +69,7 @@ class DateTimeTest extends TestCase
     }
 
     /**
-     * @unreleased
+     * @since 1.2.0
      */
     public function testShouldReturnSameDateTimeInstanceWhenSanitizing()
     {
@@ -80,7 +80,7 @@ class DateTimeTest extends TestCase
     }
 
     /**
-     * @unreleased
+     * @since 1.2.0
      */
     public function testShouldReturnDateTimeInstanceWhenSanitizingDateTimeString()
     {

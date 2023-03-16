@@ -7,7 +7,7 @@ use Closure;
 class InStrict extends In
 {
     /**
-     * @unreleased
+     * @since 1.2.0
      */
     public static function id(): string
     {
@@ -15,7 +15,7 @@ class InStrict extends In
     }
 
     /**
-     * @unreleased
+     * @since 1.2.0
      */
     public function __invoke($value, Closure $fail, string $key, array $values)
     {

@@ -13,7 +13,7 @@ use StellarWP\Validation\Contracts\ValidationRule;
 /**
  * This rule validates that the given value is a valid date.
  *
- * @unreleased
+ * @since 1.2.0
  */
 class DateTime implements ValidationRule, ValidatesOnFrontEnd, Sanitizer
 {
@@ -23,7 +23,7 @@ class DateTime implements ValidationRule, ValidatesOnFrontEnd, Sanitizer
     protected $format;
 
     /**
-     * @unreleased
+     * @since 1.2.0
      */
     public static function id(): string
     {
@@ -31,7 +31,7 @@ class DateTime implements ValidationRule, ValidatesOnFrontEnd, Sanitizer
     }
 
     /**
-     * @unreleased
+     * @since 1.2.0
      */
     public static function fromString(string $options = null): ValidationRule
     {
@@ -39,7 +39,7 @@ class DateTime implements ValidationRule, ValidatesOnFrontEnd, Sanitizer
     }
 
     /**
-     * @unreleased
+     * @since 1.2.0
      */
     public function __construct(string $format = null)
     {
@@ -47,7 +47,7 @@ class DateTime implements ValidationRule, ValidatesOnFrontEnd, Sanitizer
     }
 
     /**
-     * @unreleased
+     * @since 1.2.0
      */
     public function __invoke($value, Closure $fail, string $key, array $values)
     {
@@ -94,7 +94,7 @@ class DateTime implements ValidationRule, ValidatesOnFrontEnd, Sanitizer
     }
 
     /**
-     * @unreleased
+     * @since 1.2.0
      */
     public function sanitize($value)
     {
@@ -110,7 +110,7 @@ class DateTime implements ValidationRule, ValidatesOnFrontEnd, Sanitizer
     }
 
     /**
-     * @unreleased
+     * @since 1.2.0
      */
     public function serializeOption()
     {

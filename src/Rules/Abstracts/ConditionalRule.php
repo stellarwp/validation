@@ -37,7 +37,7 @@ abstract class ConditionalRule implements ValidationRule, ValidatesOnFrontEnd
      *
      * Each rule is assumed to be a basic condition with an equals operator.
      *
-     * @unreleased
+     * @since 1.2.0
      */
     public static function fromString(string $options = null): ValidationRule
     {
@@ -64,7 +64,7 @@ abstract class ConditionalRule implements ValidationRule, ValidatesOnFrontEnd
     /**
      * {@inheritdoc}
      *
-     * @unreleased
+     * @since 1.2.0
      */
     public function serializeOption()
     {

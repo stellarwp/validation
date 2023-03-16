@@ -11,7 +11,7 @@ use StellarWP\Validation\Tests\TestCase;
 class ExcludeTest extends TestCase
 {
     /**
-     * @unreleased
+     * @since 1.2.0
      */
     public function testShouldReturnExcludedValueWhenUsed()
     {

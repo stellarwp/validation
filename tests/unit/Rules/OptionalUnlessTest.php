@@ -10,7 +10,7 @@ use StellarWP\Validation\Tests\TestCase;
 class OptionalUnlessTest extends TestCase
 {
     /**
-     * @unreleased
+     * @since 1.2.0
      */
     public function testShouldSkipWhenConditionsFailAndValueIsNull()
     {
@@ -22,7 +22,7 @@ class OptionalUnlessTest extends TestCase
     }
 
     /**
-     * @unreleased
+     * @since 1.2.0
      */
     public function testShouldSkipWhenConditionsFailAndValueIsEmptyString()
     {
@@ -34,7 +34,7 @@ class OptionalUnlessTest extends TestCase
     }
 
     /**
-     * @unreleased
+     * @since 1.2.0
      */
     public function testShouldNotSkipWhenConditionsFailAndValueIsNotEmpty()
     {
@@ -46,7 +46,7 @@ class OptionalUnlessTest extends TestCase
     }
 
     /**
-     * @unreleased
+     * @since 1.2.0
      */
     public function testShouldNotSkipWhenConditionsPass()
     {
@@ -59,7 +59,7 @@ class OptionalUnlessTest extends TestCase
     }
 
     /**
-     * @unreleased
+     * @since 1.2.0
      */
     private function generateFailingConditionSet()
     {

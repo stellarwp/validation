@@ -11,14 +11,14 @@ use StellarWP\Validation\Rules\Abstracts\ConditionalRule;
 /**
  * The value is nullable if the conditions pass.
  *
- * @unreleased
+ * @since 1.2.0
  */
 class NullableIf extends ConditionalRule
 {
     /**
      * {@inheritDoc}
      *
-     * @unreleased
+     * @since 1.2.0
      */
     public static function id(): string
     {
@@ -28,7 +28,7 @@ class NullableIf extends ConditionalRule
     /**
      * {@inheritDoc}
      *
-     * @unreleased
+     * @since 1.2.0
      */
     public function __invoke($value, Closure $fail, string $key, array $values)
     {

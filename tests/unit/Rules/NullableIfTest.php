@@ -10,7 +10,7 @@ use StellarWP\Validation\Tests\TestCase;
 class NullableIfTest extends TestCase
 {
     /**
-     * @unreleased
+     * @since 1.2.0
      */
     public function testShouldReturnSkipValidationRulesWhenConditionPasses()
     {
@@ -23,7 +23,7 @@ class NullableIfTest extends TestCase
     }
 
     /**
-     * @unreleased
+     * @since 1.2.0
      */
     public function testShouldNotReturnSkipValidationRulesWhenConditionFails()
     {
