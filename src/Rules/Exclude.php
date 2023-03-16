@@ -11,14 +11,14 @@ use StellarWP\Validation\Contracts\ValidationRule;
 /**
  * Applying this rule will prevent all further validations and exclude the value from the validated dataset.
  *
- * @unreleased
+ * @since 1.2.0
  */
 class Exclude implements ValidationRule
 {
     /**
      * @inheritDoc
      *
-     * @unreleased
+     * @since 1.2.0
      */
     public static function id(): string
     {
@@ -28,7 +28,7 @@ class Exclude implements ValidationRule
     /**
      * @inheritDoc
      *
-     * @unreleased
+     * @since 1.2.0
      */
     public static function fromString(string $options = null): ValidationRule
     {
@@ -38,7 +38,7 @@ class Exclude implements ValidationRule
     /**
      * @inheritDoc
      *
-     * @unreleased
+     * @since 1.2.0
      */
     public function __invoke($value, Closure $fail, string $key, array $values): ExcludeValue
     {

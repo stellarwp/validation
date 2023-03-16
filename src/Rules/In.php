@@ -15,7 +15,7 @@ class In implements ValidationRule, ValidatesOnFrontEnd
     protected $acceptedValues;
 
     /**
-     * @unreleased
+     * @since 1.2.0
      */
     public static function id(): string
     {
@@ -23,7 +23,7 @@ class In implements ValidationRule, ValidatesOnFrontEnd
     }
 
     /**
-     * @unreleased
+     * @since 1.2.0
      */
     final public function __construct(...$acceptedValues)
     {
@@ -35,7 +35,7 @@ class In implements ValidationRule, ValidatesOnFrontEnd
     }
 
     /**
-     * @unreleased
+     * @since 1.2.0
      */
     public static function fromString(string $options = null): ValidationRule
     {
@@ -53,7 +53,7 @@ class In implements ValidationRule, ValidatesOnFrontEnd
     }
 
     /**
-     * @unreleased
+     * @since 1.2.0
      */
     public function __invoke($value, Closure $fail, string $key, array $values)
     {
@@ -63,7 +63,7 @@ class In implements ValidationRule, ValidatesOnFrontEnd
     }
 
     /**
-     * @unreleased
+     * @since 1.2.0
      */
     public function serializeOption(): array
     {

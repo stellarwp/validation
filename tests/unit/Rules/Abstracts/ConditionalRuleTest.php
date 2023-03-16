@@ -11,12 +11,12 @@ use StellarWP\Validation\Rules\Abstracts\ConditionalRule;
 use StellarWP\Validation\Tests\TestCase;
 
 /**
- * @unreleased
+ * @since 1.2.0
  */
 class ConditionalRuleTest extends TestCase
 {
     /**
-     * @unreleased
+     * @since 1.2.0
      */
     public function testShouldAcceptConditionSetInConstructor()
     {
@@ -26,7 +26,7 @@ class ConditionalRuleTest extends TestCase
     }
 
     /**
-     * @unreleased
+     * @since 1.2.0
      */
     public function testShouldAcceptConditionsArrayInConstructor()
     {
@@ -36,7 +36,7 @@ class ConditionalRuleTest extends TestCase
     }
 
     /**
-     * @unreleased
+     * @since 1.2.0
      */
     public function testShouldCreateConditionSetFromOptionsString()
     {
@@ -46,7 +46,7 @@ class ConditionalRuleTest extends TestCase
     }
 
     /**
-     * @unreleased
+     * @since 1.2.0
      */
     public function testShouldReturnSerializedConditions()
     {
@@ -60,7 +60,7 @@ class ConditionalRuleTest extends TestCase
 }
 
 /**
- * @unreleased
+ * @since 1.2.0
  */
 class MockConditionalRule extends ConditionalRule
 {

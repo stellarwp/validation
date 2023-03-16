@@ -9,7 +9,7 @@ use StellarWP\Validation\Tests\TestCase;
 class InStrictTest extends TestCase
 {
     /**
-     * @unreleased
+     * @since 1.2.0
      */
     public function testShouldAllowStrictlyEqualValuesInArray()
     {
@@ -20,7 +20,7 @@ class InStrictTest extends TestCase
     }
 
     /**
-     * @unreleased
+     * @since 1.2.0
      */
     public function testShouldFailStrictlyUnequalValues()
     {
@@ -33,7 +33,7 @@ class InStrictTest extends TestCase
     }
 
     /**
-     * @unreleased
+     * @since 1.2.0
      */
     public function testShouldCreateRuleFromCommaDelimitedList()
     {
@@ -46,7 +46,7 @@ class InStrictTest extends TestCase
     }
 
     /**
-     * @unreleased
+     * @since 1.2.0
      */
     public function testFromStringShouldRequireValues()
     {
@@ -56,7 +56,7 @@ class InStrictTest extends TestCase
     }
 
     /**
-     * @unreleased
+     * @since 1.2.0
      */
     public function testShouldThrowInvalidExceptionWithoutValues()
     {
@@ -66,7 +66,7 @@ class InStrictTest extends TestCase
     }
 
     /**
-     * @unreleased
+     * @since 1.2.0
      */
     public function testSerializeOptionShouldRetunValuesArray()
     {

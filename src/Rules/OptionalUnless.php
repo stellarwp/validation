@@ -11,14 +11,14 @@ use StellarWP\Validation\Rules\Abstracts\ConditionalRule;
 /**
  * Mark the value as optional unless the conditions pass
  *
- * @unreleased
+ * @since 1.2.0
  *
  * @see Optional
  */
 class OptionalUnless extends ConditionalRule
 {
     /**
-     * @unreleased
+     * @since 1.2.0
      */
     public static function id(): string
     {
@@ -26,7 +26,7 @@ class OptionalUnless extends ConditionalRule
     }
 
     /**
-     * @unreleased
+     * @since 1.2.0
      */
     public function __invoke($value, Closure $fail, string $key, array $values)
     {

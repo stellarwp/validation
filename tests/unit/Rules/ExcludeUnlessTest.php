@@ -12,7 +12,7 @@ use StellarWP\Validation\Tests\TestCase;
 class ExcludeUnlessTest extends TestCase
 {
     /**
-     * @unreleased
+     * @since 1.2.0
      */
     public function testShouldReturnExcludedValueWhenConditionFails()
     {
@@ -25,7 +25,7 @@ class ExcludeUnlessTest extends TestCase
     }
 
     /**
-     * @unreleased
+     * @since 1.2.0
      */
     public function testShouldNotReturnExcludeValueWhenConditionsPass()
     {
