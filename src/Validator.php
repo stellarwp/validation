@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace StellarWP\Validation;
 
+use StellarWP\Validation\Commands\ExcludeValue;
 use StellarWP\Validation\Commands\SkipValidationRules;
 use StellarWP\Validation\Contracts\Sanitizer;
 
@@ -119,6 +120,11 @@ class Validator
 
                 if ($command instanceof SkipValidationRules) {
                     break;
+                }
+
+                if ($command instanceof ExcludeValue) {
+                    // Skip the rest of the rule and do not store the value
+                    continue 2;
                 }
 
                 if ($rule instanceof Sanitizer) {
