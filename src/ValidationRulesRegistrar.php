@@ -31,7 +31,7 @@ class ValidationRulesRegistrar
     /**
      * Register a validation rule.
      *
-     * @unreleased switch to throwing InvalidArgumentException from Config
+     * @since 1.2.1 switch to throwing InvalidArgumentException from Config
      * @since 1.0.0
      */
     private function registerClass(string $class): self
