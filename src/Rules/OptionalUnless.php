@@ -18,11 +18,12 @@ use StellarWP\Validation\Rules\Abstracts\ConditionalRule;
 class OptionalUnless extends ConditionalRule
 {
     /**
+     * @since 1.2.2 correct id
      * @since 1.2.0
      */
     public static function id(): string
     {
-        return 'optionalIf';
+        return 'optionalUnless';
     }
 
     /**
