@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace StellarWP\Validation;
 
-use StellarWP\Exceptions\Primitives\InvalidArgumentException;
 use StellarWP\Validation\Contracts\ValidationRule;
 
 /**
@@ -32,12 +31,13 @@ class ValidationRulesRegistrar
     /**
      * Register a validation rule.
      *
+     * @unreleased switch to throwing InvalidArgumentException from Config
      * @since 1.0.0
      */
     private function registerClass(string $class): self
     {
         if (!is_subclass_of($class, ValidationRule::class)) {
-            throw new InvalidArgumentException(
+            Config::throwInvalidArgumentException(
                 sprintf(
                     'Validation rule must implement %s',
                     ValidationRule::class
@@ -45,13 +45,15 @@ class ValidationRulesRegistrar
             );
         }
 
-        if (isset($this->rules[$class::id()])) {
-            throw new InvalidArgumentException(
-                "A validation rule with the id {$class::id()} has already been registered."
+        $classId = $class::id();
+
+        if (isset($this->rules[$classId])) {
+            Config::throwInvalidArgumentException(
+                "A validation rule with the id $classId has already been registered."
             );
         }
 
-        $this->rules[$class::id()] = $class;
+        $this->rules[$classId] = $class;
 
         return $this;
     }
