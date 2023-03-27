@@ -118,14 +118,22 @@ class ValidationRuleSetTest extends TestCase
 
     public function testReplacingARule()
     {
+        // Replace if rule exists
         $rules = new ValidationRuleSet($this->getMockRulesRegister());
         $rules->rules('required', 'size:5');
-        $rules->replaceRule('size', new Size(10));
 
+        self::assertTrue($rules->replaceRule('size', new Size(10)));
         self::assertCount(2, $rules);
         self::assertTrue($rules->hasRule('required'));
         self::assertTrue($rules->hasRule('size'));
         self::assertEquals(10, $rules->getRule('size')->getSize());
+
+        // Do not replace if rule does not exist
+        $rules = new ValidationRuleSet($this->getMockRulesRegister());
+        $rules->rules('required');
+
+        self::assertFalse($rules->replaceRule('size', new Size(10)));
+        self::assertCount(1, $rules);
     }
 
     public function testConditionallyReplacingOrAppendingARule()
@@ -133,8 +141,9 @@ class ValidationRuleSetTest extends TestCase
         // Replace if rule exists
         $rules = new ValidationRuleSet($this->getMockRulesRegister());
         $rules->rules('required', 'size:5');
-        $rules->replaceOrAppendRule('size', new Size(10));
 
+
+        self::assertTrue($rules->replaceOrAppendRule('size', new Size(10)));
         self::assertCount(2, $rules);
         self::assertTrue($rules->hasRule('required'));
         self::assertTrue($rules->hasRule('size'));
@@ -143,8 +152,8 @@ class ValidationRuleSetTest extends TestCase
         // Append if rule does not exist
         $rules = new ValidationRuleSet($this->getMockRulesRegister());
         $rules->rules('required');
-        $rules->replaceOrAppendRule('size', new Size(10));
 
+        self::assertFalse($rules->replaceOrAppendRule('size', new Size(10)));
         self::assertCount(2, $rules);
         self::assertTrue($rules->hasRule('required'));
         self::assertTrue($rules->hasRule('size'));
@@ -156,8 +165,8 @@ class ValidationRuleSetTest extends TestCase
         // Replace if rule exists
         $rules = new ValidationRuleSet($this->getMockRulesRegister());
         $rules->rules('required', 'size:5');
-        $rules->replaceOrPrependRule('size', new Size(10));
 
+        self::AssertTrue($rules->replaceOrPrependRule('size', new Size(10)));
         self::assertCount(2, $rules);
         self::assertTrue($rules->hasRule('required'));
         self::assertTrue($rules->hasRule('size'));
@@ -166,8 +175,8 @@ class ValidationRuleSetTest extends TestCase
         // Prepend if rule does not exist
         $rules = new ValidationRuleSet($this->getMockRulesRegister());
         $rules->rules('required');
-        $rules->replaceOrPrependRule('size', new Size(10));
 
+        self::assertFalse($rules->replaceOrPrependRule('size', new Size(10)));
         self::assertCount(2, $rules);
         self::assertTrue($rules->hasRule('required'));
         self::assertTrue($rules->hasRule('size'));
