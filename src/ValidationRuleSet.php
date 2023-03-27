@@ -45,121 +45,89 @@ class ValidationRuleSet implements IteratorAggregate, JsonSerializable
     public function rules(...$rules): self
     {
         foreach ($rules as $rule) {
-            if ($rule instanceof Closure) {
-                $this->validateClosureRule($rule);
-                $this->rules[] = $rule;
-            } elseif ($rule instanceof ValidationRule) {
-                $this->rules[] = $rule;
-            } elseif (is_string($rule)) {
-                $this->rules[] = $this->getRuleFromString($rule);
-            } else {
-                Config::throwInvalidArgumentException(
-                    sprintf(
-                        'Validation rule must be a string, instance of %s, or a closure',
-                        ValidationRule::class
-                    )
-                );
-            }
+            $this->rules[] = $this->sanitizeRule($rule);
         }
 
         return $this;
     }
 
     /**
-     * Validates that a closure rule has the proper parameters to be used as a validation rule.
+     * Prepends a given rule to the start of the rules array.
      *
-     * @since 1.0.0
+     * @unreleased
      *
-     * @return void
+     * @param string|ValidationRule|Closure $rule
      */
-    private function validateClosureRule(Closure $closure)
+    public function prependRule($rule): self
     {
-        try {
-            $reflection = new ReflectionFunction($closure);
-        } catch (ReflectionException $e) {
-            Config::throwInvalidArgumentException(
-                'Unable to validate closure parameters. Please ensure that the closure is valid.'
-            );
-        }
+        array_unshift($this->rules, $this->sanitizeRule($rule));
 
-        $parameters = $reflection->getParameters();
-        $parameterCount = count($parameters);
-
-        if ($parameterCount < 2 || $parameterCount > 4) {
-            Config::throwInvalidArgumentException(
-                "Validation rule closure must accept between 2 and 4 parameters, $parameterCount given."
-            );
-        }
-
-        $parameterType = $this->getParameterTypeName($parameters[1]);
-        if ($parameterType !== null && $parameterType !== 'Closure') {
-            Config::throwInvalidArgumentException(
-                "Validation rule closure must accept a Closure as the second parameter, {$parameterType} given."
-            );
-        }
-
-        $parameterType = $parameterCount > 2 ? $this->getParameterTypeName($parameters[2]) : null;
-        if ($parameterType !== null && $parameterType !== 'string') {
-            Config::throwInvalidArgumentException(
-                "Validation rule closure must accept a string as the third parameter, {$parameterType} given."
-            );
-        }
-
-        $parameterType = $parameterCount > 3 ? $this->getParameterTypeName($parameters[3]) : null;
-        if ($parameterType !== null && $parameterType !== 'array') {
-            Config::throwInvalidArgumentException(
-                "Validation rule closure must accept a array as the fourth parameter, {$parameterType} given."
-            );
-        }
+        return $this;
     }
 
     /**
-     * Retrieves the parameter type with PHP 7.0 compatibility.
+     * Replaces the given rule at the same index position or appends it if it doesn't exist.
      *
-     * @since 1.0.0
+     * @unreleased
      *
-     * @return string|null
+     * @param string|ValidationRule|Closure $rule
+     *
+     * @return bool True if the rule was replaced, false if it was appended.
      */
-    private function getParameterTypeName(ReflectionParameter $parameter)
+    public function replaceOrAppendRule(string $ruleId, $rule): bool
     {
-        $type = $parameter->getType();
+        $replaced = $this->replaceRule($ruleId, $rule);
 
-        if ($type === null) {
-            return null;
+        if (!$replaced) {
+            $this->rules($rule);
+
+            return false;
         }
 
-        // Check if the method exists for PHP 7.0 compatibility (it exits as of PHP 7.1)
-        if (method_exists($type, 'getName')) {
-            return $type->getName();
-        }
-
-        return (string)$type;
+        return true;
     }
 
     /**
-     * Takes a validation rule string and returns the corresponding rule instance.
+     * Replaces the given rule at the same index position or prepends it if it doesn't exist.
      *
-     * @since 1.0.0
+     * @unreleased
+     *
+     * @param string|ValidationRule|Closure $rule
+     *
+     * @return bool True if the rule was replaced, false if it was prepended.
      */
-    private function getRuleFromString(string $rule): ValidationRule
+    public function replaceOrPrependRule(string $ruleId, $rule): bool
     {
-        list($ruleId, $ruleOptions) = array_pad(explode(':', $rule, 2), 2, null);
+        $replaced = $this->replaceRule($ruleId, $rule);
 
-        /**
-         * @var ValidationRule $ruleClass
-         */
-        $ruleClass = $this->register->getRule($ruleId);
+        if (!$replaced) {
+            $this->prependRule($rule);
 
-        if (!$ruleClass) {
-            Config::throwInvalidArgumentException(
-                sprintf(
-                    'Validation rule with id %s has not been registered.',
-                    $ruleId
-                )
-            );
+            return false;
         }
 
-        return $ruleClass::fromString($ruleOptions);
+        return true;
+    }
+
+    /**
+     * Replace a rule with the given id with the given rule at the same index position. Returns true if the rule was
+     * replaced, false otherwise.
+     *
+     * @unreleased
+     *
+     * @param string|ValidationRule|Closure $rule
+     */
+    public function replaceRule(string $ruleId, $rule): bool
+    {
+        foreach ($this->rules as $index => $validationRule) {
+            if ($validationRule instanceof ValidationRule && $validationRule::id() === $ruleId) {
+                $this->rules[$index] = $this->sanitizeRule($rule);
+
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**
@@ -267,5 +235,131 @@ class ValidationRuleSet implements IteratorAggregate, JsonSerializable
         }
 
         return $rules;
+    }
+
+    /**
+     * Sanitizes a given rule by validating the rule and making sure it's safe to use.
+     *
+     * @unreleased
+     *
+     * @param mixed $rule
+     *
+     * @return Closure|ValidationRule
+     */
+    private function sanitizeRule($rule)
+    {
+        if ($rule instanceof Closure) {
+            $this->validateClosureRule($rule);
+
+            return $rule;
+        } elseif ($rule instanceof ValidationRule) {
+            return $rule;
+        } elseif (is_string($rule)) {
+            return $this->getRuleFromString($rule);
+        } else {
+            Config::throwInvalidArgumentException(
+                sprintf(
+                    'Validation rule must be a string, instance of %s, or a closure',
+                    ValidationRule::class
+                )
+            );
+        }
+    }
+
+    /**
+     * Validates that a closure rule has the proper parameters to be used as a validation rule.
+     *
+     * @since 1.0.0
+     *
+     * @return void
+     */
+    private function validateClosureRule(Closure $closure)
+    {
+        try {
+            $reflection = new ReflectionFunction($closure);
+        } catch (ReflectionException $e) {
+            Config::throwInvalidArgumentException(
+                'Unable to validate closure parameters. Please ensure that the closure is valid.'
+            );
+        }
+
+        $parameters = $reflection->getParameters();
+        $parameterCount = count($parameters);
+
+        if ($parameterCount < 2 || $parameterCount > 4) {
+            Config::throwInvalidArgumentException(
+                "Validation rule closure must accept between 2 and 4 parameters, $parameterCount given."
+            );
+        }
+
+        $parameterType = $this->getParameterTypeName($parameters[1]);
+        if ($parameterType !== null && $parameterType !== 'Closure') {
+            Config::throwInvalidArgumentException(
+                "Validation rule closure must accept a Closure as the second parameter, {$parameterType} given."
+            );
+        }
+
+        $parameterType = $parameterCount > 2 ? $this->getParameterTypeName($parameters[2]) : null;
+        if ($parameterType !== null && $parameterType !== 'string') {
+            Config::throwInvalidArgumentException(
+                "Validation rule closure must accept a string as the third parameter, {$parameterType} given."
+            );
+        }
+
+        $parameterType = $parameterCount > 3 ? $this->getParameterTypeName($parameters[3]) : null;
+        if ($parameterType !== null && $parameterType !== 'array') {
+            Config::throwInvalidArgumentException(
+                "Validation rule closure must accept a array as the fourth parameter, {$parameterType} given."
+            );
+        }
+    }
+
+    /**
+     * Retrieves the parameter type with PHP 7.0 compatibility.
+     *
+     * @since 1.0.0
+     *
+     * @return string|null
+     */
+    private function getParameterTypeName(ReflectionParameter $parameter)
+    {
+        $type = $parameter->getType();
+
+        if ($type === null) {
+            return null;
+        }
+
+        // Check if the method exists for PHP 7.0 compatibility (it exits as of PHP 7.1)
+        if (method_exists($type, 'getName')) {
+            return $type->getName();
+        }
+
+        return (string)$type;
+    }
+
+    /**
+     * Takes a validation rule string and returns the corresponding rule instance.
+     *
+     * @since 1.0.0
+     */
+    private function getRuleFromString(string $rule): ValidationRule
+    {
+        [$ruleId, $ruleOptions] = array_pad(explode(':', $rule, 2), 2, null);
+
+        /**
+         * @var ValidationRule $ruleClass
+         */
+        $ruleClass = $this->register->getRule($ruleId);
+
+        if (!$ruleClass) {
+            Config::throwInvalidArgumentException(
+                sprintf(
+                    'Validation rule with id %s has not been registered.',
+                    $ruleId
+                )
+            );
+        }
+
+        return $ruleClass::fromString($ruleOptions);
     }
 }
