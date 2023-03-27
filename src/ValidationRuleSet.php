@@ -133,6 +133,8 @@ class ValidationRuleSet implements IteratorAggregate, JsonSerializable
     /**
      * Finds and returns the validation rule by id. Does not work for Closure rules.
      *
+     * @since 1.0.0
+     *
      * @return ValidationRule|null
      */
     public function getRule(string $rule)
