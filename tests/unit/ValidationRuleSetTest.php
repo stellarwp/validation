@@ -53,6 +53,26 @@ class ValidationRuleSetTest extends TestCase
     }
 
     /**
+     * @unreleased
+     */
+    public function testPrependingARule()
+    {
+        $rules = new ValidationRuleSet($this->getMockRulesRegister());
+        $rules->rules('size:5');
+        $rules->prependRule(new Required());
+
+        self::assertCount(2, $rules);
+        self::assertInstanceOf(Required::class, $rules->getRule('required'));
+        self::assertJsonStringEqualsJsonString(
+            json_encode([
+                'required' => true,
+                'size' => 5,
+            ]),
+            json_encode($rules)
+        );
+    }
+
+    /**
      * @since 1.1.0
      */
     public function testCheckingHasRule()
@@ -63,6 +83,22 @@ class ValidationRuleSetTest extends TestCase
         self::assertTrue($rules->hasRule('required'));
         self::assertTrue($rules->hasRule('size'));
         self::assertFalse($rules->hasRule('email'));
+    }
+
+    /**
+     * @unreleased
+     */
+    public function testCheckingHasAnyRules()
+    {
+        // True if it has rules
+        $rules = new ValidationRuleSet($this->getMockRulesRegister());
+        $rules->rules('required', 'size:5');
+
+        self::assertTrue($rules->hasRules());
+
+        // False if it has no rules
+        $rules = new ValidationRuleSet($this->getMockRulesRegister());
+        self::assertFalse($rules->hasRules());
     }
 
     /**
@@ -100,6 +136,82 @@ class ValidationRuleSetTest extends TestCase
 
         self::assertCount(1, $rules);
         self::assertFalse($rules->hasRule('required'));
+    }
+
+    /**
+     * @unreleased
+     */
+    public function testReplacingARule()
+    {
+        // Replace if rule exists
+        $rules = new ValidationRuleSet($this->getMockRulesRegister());
+        $rules->rules('required', 'size:5');
+
+        self::assertTrue($rules->replaceRule('size', new Size(10)));
+        self::assertCount(2, $rules);
+        self::assertTrue($rules->hasRule('required'));
+        self::assertTrue($rules->hasRule('size'));
+        self::assertEquals(10, $rules->getRule('size')->getSize());
+
+        // Do not replace if rule does not exist
+        $rules = new ValidationRuleSet($this->getMockRulesRegister());
+        $rules->rules('required');
+
+        self::assertFalse($rules->replaceRule('size', new Size(10)));
+        self::assertCount(1, $rules);
+    }
+
+    /**
+     * @unreleased
+     */
+    public function testConditionallyReplacingOrAppendingARule()
+    {
+        // Replace if rule exists
+        $rules = new ValidationRuleSet($this->getMockRulesRegister());
+        $rules->rules('required', 'size:5');
+
+
+        self::assertTrue($rules->replaceOrAppendRule('size', new Size(10)));
+        self::assertCount(2, $rules);
+        self::assertTrue($rules->hasRule('required'));
+        self::assertTrue($rules->hasRule('size'));
+        self::assertEquals(10, $rules->getRule('size')->getSize());
+
+        // Append if rule does not exist
+        $rules = new ValidationRuleSet($this->getMockRulesRegister());
+        $rules->rules('required');
+
+        self::assertFalse($rules->replaceOrAppendRule('size', new Size(10)));
+        self::assertCount(2, $rules);
+        self::assertTrue($rules->hasRule('required'));
+        self::assertTrue($rules->hasRule('size'));
+        self::assertEquals(10, $rules->getRule('size')->getSize());
+    }
+
+    /**
+     * @unreleased
+     */
+    public function testConditionallyReplacingOrPrependingRules()
+    {
+        // Replace if rule exists
+        $rules = new ValidationRuleSet($this->getMockRulesRegister());
+        $rules->rules('required', 'size:5');
+
+        self::AssertTrue($rules->replaceOrPrependRule('size', new Size(10)));
+        self::assertCount(2, $rules);
+        self::assertTrue($rules->hasRule('required'));
+        self::assertTrue($rules->hasRule('size'));
+        self::assertEquals(10, $rules->getRule('size')->getSize());
+
+        // Prepend if rule does not exist
+        $rules = new ValidationRuleSet($this->getMockRulesRegister());
+        $rules->rules('required');
+
+        self::assertFalse($rules->replaceOrPrependRule('size', new Size(10)));
+        self::assertCount(2, $rules);
+        self::assertTrue($rules->hasRule('required'));
+        self::assertTrue($rules->hasRule('size'));
+        self::assertEquals(10, $rules->getRule('size')->getSize());
     }
 
     /**
