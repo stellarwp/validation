@@ -178,7 +178,7 @@ class ValidatorTest extends TestCase
     }
 
     /**
-     * @unreleased
+     * @since 1.3.0
      */
     public function testRulesThatReturnExcludeValuePreventValidation()
     {

@@ -54,7 +54,7 @@ class ValidationRuleSet implements IteratorAggregate, JsonSerializable
     /**
      * Prepends a given rule to the start of the rules array.
      *
-     * @unreleased
+     * @since 1.3.0
      *
      * @param string|ValidationRule|Closure $rule
      */
@@ -68,7 +68,7 @@ class ValidationRuleSet implements IteratorAggregate, JsonSerializable
     /**
      * Replaces the given rule at the same index position or appends it if it doesn't exist.
      *
-     * @unreleased
+     * @since 1.3.0
      *
      * @param string|ValidationRule|Closure $rule
      *
@@ -90,7 +90,7 @@ class ValidationRuleSet implements IteratorAggregate, JsonSerializable
     /**
      * Replaces the given rule at the same index position or prepends it if it doesn't exist.
      *
-     * @unreleased
+     * @since 1.3.0
      *
      * @param string|ValidationRule|Closure $rule
      *
@@ -113,7 +113,7 @@ class ValidationRuleSet implements IteratorAggregate, JsonSerializable
      * Replace a rule with the given id with the given rule at the same index position. Returns true if the rule was
      * replaced, false otherwise.
      *
-     * @unreleased
+     * @since 1.3.0
      *
      * @param string|ValidationRule|Closure $rule
      */
@@ -242,7 +242,7 @@ class ValidationRuleSet implements IteratorAggregate, JsonSerializable
     /**
      * Sanitizes a given rule by validating the rule and making sure it's safe to use.
      *
-     * @unreleased
+     * @since 1.3.0
      *
      * @param mixed $rule
      *

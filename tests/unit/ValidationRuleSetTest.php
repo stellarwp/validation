@@ -53,7 +53,7 @@ class ValidationRuleSetTest extends TestCase
     }
 
     /**
-     * @unreleased
+     * @since 1.3.0
      */
     public function testPrependingARule()
     {
@@ -86,7 +86,7 @@ class ValidationRuleSetTest extends TestCase
     }
 
     /**
-     * @unreleased
+     * @since 1.3.0
      */
     public function testCheckingHasAnyRules()
     {
@@ -139,7 +139,7 @@ class ValidationRuleSetTest extends TestCase
     }
 
     /**
-     * @unreleased
+     * @since 1.3.0
      */
     public function testReplacingARule()
     {
@@ -162,7 +162,7 @@ class ValidationRuleSetTest extends TestCase
     }
 
     /**
-     * @unreleased
+     * @since 1.3.0
      */
     public function testConditionallyReplacingOrAppendingARule()
     {
@@ -189,7 +189,7 @@ class ValidationRuleSetTest extends TestCase
     }
 
     /**
-     * @unreleased
+     * @since 1.3.0
      */
     public function testConditionallyReplacingOrPrependingRules()
     {
