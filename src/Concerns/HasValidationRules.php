@@ -30,6 +30,8 @@ trait HasValidationRules
     }
 
     /**
+     * @see ValidationRuleSet::rules()
+     *
      * @since 1.0.0
      */
     public function rules(...$rules): self
@@ -40,6 +42,8 @@ trait HasValidationRules
     }
 
     /**
+     * @see ValidationRuleSet::hasRule()
+     *
      * @since 1.0.0
      */
     public function hasRule(string $ruleId): bool
@@ -48,6 +52,18 @@ trait HasValidationRules
     }
 
     /**
+     * @see ValidationRuleSet::hasRules()
+     *
+     * @since 1.3.1
+     */
+    public function hasRules(): bool
+    {
+        return $this->validationRules->hasRules();
+    }
+
+    /**
+     * @see ValidationRuleSet::getRule()
+     *
      * @since 1.0.0
      */
     public function getRule(string $ruleId): ValidationRule
@@ -56,6 +72,38 @@ trait HasValidationRules
     }
 
     /**
+     * @see ValidationRuleSet::replaceRule()
+     *
+     * @since 1.3.1
+     */
+    public function replaceRule(string $ruleId, $rule): bool
+    {
+        return $this->validationRules->replaceRule($ruleId, $rule);
+    }
+
+    /**
+     * @see ValidationRuleSet::replaceOrAppendRule()
+     *
+     * @since 1.3.1
+     */
+    public function replaceOrAppendRule(string $ruleId, $rule): bool
+    {
+        return $this->validationRules->replaceOrAppendRule($ruleId, $rule);
+    }
+
+    /**
+     * @see ValidationRuleSet::replaceOrPrependRule()
+     *
+     * @since 1.3.1
+     */
+    public function replaceOrPrependRule(string $ruleId, $rule): bool
+    {
+        return $this->validationRules->replaceOrPrependRule($ruleId, $rule);
+    }
+
+    /**
+     * @see ValidationRuleSet::forgetRule()
+     *
      * @since 1.0.0
      */
     public function forgetRule(string $ruleId): self
