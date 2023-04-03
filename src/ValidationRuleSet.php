@@ -342,6 +342,7 @@ class ValidationRuleSet implements IteratorAggregate, JsonSerializable
     /**
      * Takes a validation rule string and returns the corresponding rule instance.
      *
+     * @since 1.3.2 use list syntax for PHP 7.0 compatibility
      * @since 1.0.0
      */
     private function getRuleFromString(string $rule): ValidationRule
