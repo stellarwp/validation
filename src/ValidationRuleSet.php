@@ -346,7 +346,7 @@ class ValidationRuleSet implements IteratorAggregate, JsonSerializable
      */
     private function getRuleFromString(string $rule): ValidationRule
     {
-        [$ruleId, $ruleOptions] = array_pad(explode(':', $rule, 2), 2, null);
+        list($ruleId, $ruleOptions) = array_pad(explode(':', $rule, 2), 2, null);
 
         /**
          * @var ValidationRule $ruleClass
