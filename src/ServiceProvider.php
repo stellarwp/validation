@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace StellarWP\Validation;
 
+use StellarWP\Validation\Rules\Boolean;
 use StellarWP\Validation\Rules\Currency;
 use StellarWP\Validation\Rules\DateTime;
 use StellarWP\Validation\Rules\Email;
@@ -48,6 +49,7 @@ class ServiceProvider
         OptionalIf::class,
         OptionalUnless::class,
         DateTime::class,
+        Boolean::class,
     ];
 
     /**
