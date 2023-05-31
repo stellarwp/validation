@@ -8,7 +8,7 @@ use StellarWP\Validation\Tests\TestCase;
 class BooleanTest extends TestCase
 {
     /**
-     * @unreleased
+     * @since 1.4.0
      *
      * @dataProvider booleansProvider
      */
@@ -24,7 +24,7 @@ class BooleanTest extends TestCase
     }
 
     /**
-     * @unreleased
+     * @since 1.4.0
      */
     public function booleansProvider(): array
     {
@@ -49,7 +49,7 @@ class BooleanTest extends TestCase
     }
 
     /**
-     * @unreleased
+     * @since 1.4.0
      */
     public function testCastsToBoolean()
     {

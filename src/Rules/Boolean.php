@@ -12,7 +12,7 @@ class Boolean implements ValidationRule, ValidatesOnFrontEnd, Sanitizer
     /**
      * {@inheritDoc}
      *
-     * @unreleased
+     * @since 1.4.0
      */
     public static function id(): string
     {
@@ -22,7 +22,7 @@ class Boolean implements ValidationRule, ValidatesOnFrontEnd, Sanitizer
     /**
      * {@inheritDoc}
      *
-     * @unreleased
+     * @since 1.4.0
      */
     public static function fromString(string $options = null): ValidationRule
     {
@@ -32,7 +32,7 @@ class Boolean implements ValidationRule, ValidatesOnFrontEnd, Sanitizer
     /**
      * {@inheritDoc}
      *
-     * @unreleased
+     * @since 1.4.0
      */
     public function __invoke($value, Closure $fail, string $key, array $values)
     {
@@ -44,7 +44,7 @@ class Boolean implements ValidationRule, ValidatesOnFrontEnd, Sanitizer
     /**
      * {@inheritDoc}
      *
-     * @unreleased
+     * @since 1.4.0
      */
     public function serializeOption()
     {
@@ -54,7 +54,7 @@ class Boolean implements ValidationRule, ValidatesOnFrontEnd, Sanitizer
     /**
      * {@inheritDoc}
      *
-     * @unreleased
+     * @since 1.4.0
      */
     public function sanitize($value)
     {
