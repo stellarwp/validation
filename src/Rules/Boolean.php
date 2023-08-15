@@ -7,6 +7,8 @@ use StellarWP\Validation\Contracts\Sanitizer;
 use StellarWP\Validation\Contracts\ValidatesOnFrontEnd;
 use StellarWP\Validation\Contracts\ValidationRule;
 
+use const FILTER_NULL_ON_FAILURE;
+
 class Boolean implements ValidationRule, ValidatesOnFrontEnd, Sanitizer
 {
     /**
@@ -32,12 +34,13 @@ class Boolean implements ValidationRule, ValidatesOnFrontEnd, Sanitizer
     /**
      * {@inheritDoc}
      *
+     * @since 1.4.1 add is_bool check and FILTER_NULL_ON_FAILURE flag to prevent false positives
      * @since 1.4.0
      */
     public function __invoke($value, Closure $fail, string $key, array $values)
     {
-        if (!filter_var($value, FILTER_VALIDATE_BOOLEAN)) {
-            $fail(sprintf(__('%s must be an boolean', '%TEXTDOMAIN%'), '{field}'));
+        if (!is_bool(filter_var($value, FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE))) {
+            $fail(sprintf(__('%s must be a boolean', '%TEXTDOMAIN%'), '{field}'));
         }
     }
 
