@@ -36,15 +36,16 @@ class BooleanTest extends TestCase
             ['true', true],
             ['yes', true],
             ['on', true],
+            [false, true],
+            [0, true],
+            ['0', true],
+            ['false', true],
+            ['no', true],
+            ['off', true],
 
             // values that fail
-            [false, false],
-            [0, false],
-            ['0', false],
-            ['false', false],
-            ['no', false],
-            ['off', false],
             ['abc', false],
+            ['123', false],
         ];
     }
 
