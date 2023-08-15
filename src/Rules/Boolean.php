@@ -34,7 +34,7 @@ class Boolean implements ValidationRule, ValidatesOnFrontEnd, Sanitizer
     /**
      * {@inheritDoc}
      *
-     * @unreleased add is_bool check and FILTER_NULL_ON_FAILURE flag to prevent false positives
+     * @since 1.4.1 add is_bool check and FILTER_NULL_ON_FAILURE flag to prevent false positives
      * @since 1.4.0
      */
     public function __invoke($value, Closure $fail, string $key, array $values)

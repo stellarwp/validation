@@ -24,6 +24,7 @@ class BooleanTest extends TestCase
     }
 
     /**
+     * @since 1.4.1 updates tests to pass false-y values
      * @since 1.4.0
      */
     public function booleansProvider(): array
