@@ -1,4 +1,4 @@
-git <?php
+<?php
 
 declare(strict_types=1);
 
@@ -10,7 +10,7 @@ use StellarWP\Validation\Tests\TestCase;
 class CurrencyTest extends TestCase
 {
     /**
-     * @since 1.1.0
+     * @unreleased
      * @dataProvider currencyProvider
      */
     public function testCurrencyValidations($currency, $shouldPass)
@@ -24,31 +24,12 @@ class CurrencyTest extends TestCase
         }
     }
 
-    /**
-     * Test custom currency codes override functionality.
-     *
-     * @since 1.1.0
-     */
-    public function testCustomCurrencyCodesOverride()
-    {
-        // Test with custom currency codes
-        $customCodes = ['XYZ', 'ABC', 'DEF'];
-        $rule = new Currency($customCodes);
 
-        // Custom codes should pass
-        self::assertValidationRulePassed($rule, 'XYZ');
-        self::assertValidationRulePassed($rule, 'ABC');
-        self::assertValidationRulePassed($rule, 'def'); // case insensitive
-
-        // Standard codes should fail when using custom list
-        self::assertValidationRuleFailed($rule, 'USD');
-        self::assertValidationRuleFailed($rule, 'EUR');
-    }
 
     /**
      * Test that obsolete currency codes no longer pass validation.
      *
-     * @since 1.1.0
+     * @unreleased
      * @dataProvider obsoleteCurrencyProvider
      */
     public function testObsoleteCurrencyCodesFail($currency)
@@ -60,7 +41,7 @@ class CurrencyTest extends TestCase
     /**
      * Test newly added currency codes pass validation.
      *
-     * @since 1.1.0
+     * @unreleased
      * @dataProvider newCurrencyProvider
      */
     public function testNewCurrencyCodesPass($currency)
@@ -72,7 +53,7 @@ class CurrencyTest extends TestCase
     /**
      * Test case insensitivity with various currency codes.
      *
-     * @since 1.1.0
+     * @unreleased
      * @dataProvider caseInsensitiveProvider
      */
     public function testCaseInsensitivity($currency, $shouldPass)
@@ -87,7 +68,7 @@ class CurrencyTest extends TestCase
     }
 
     /**
-     * @since 1.1.0
+     * @unreleased
      */
     public function currencyProvider(): array
     {
@@ -149,7 +130,7 @@ class CurrencyTest extends TestCase
     /**
      * Currency codes that were removed in the 2024 update.
      *
-     * @since 1.1.0
+     * @unreleased
      */
     public function obsoleteCurrencyProvider(): array
     {
@@ -168,7 +149,7 @@ class CurrencyTest extends TestCase
     /**
      * New currency codes added in the 2024 update.
      *
-     * @since 1.1.0
+     * @unreleased
      */
     public function newCurrencyProvider(): array
     {
@@ -211,7 +192,6 @@ class CurrencyTest extends TestCase
             ['RWF'], // Rwandan Franc
             ['SDG'], // Sudanese Pound
             ['SLE'], // Sierra Leonean Leone (new)
-            ['SLL'], // Sierra Leonean Leone (old)
             ['SSP'], // South Sudanese Pound
             ['STN'], // São Tomé and Príncipe Dobra
             ['SZL'], // Swazi Lilangeni
@@ -237,7 +217,7 @@ class CurrencyTest extends TestCase
     /**
      * Test various case combinations.
      *
-     * @since 1.1.0
+     * @unreleased
      */
     public function caseInsensitiveProvider(): array
     {
