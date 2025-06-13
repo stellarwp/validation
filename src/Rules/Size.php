@@ -47,7 +47,7 @@ class Size implements ValidationRule, ValidatesOnFrontEnd
      *
      * @since 1.0.0
      */
-    public static function fromString(string $options = null): ValidationRule
+    public static function fromString(?string $options = null): ValidationRule
     {
         if (!is_numeric($options)) {
             Config::throwInvalidArgumentException('Size validation rule requires a numeric value');
