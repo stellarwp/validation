@@ -82,6 +82,7 @@ class Config
     /**
      * @since 1.0.0
      *
+     * @return never
      * @throws ValidationExceptionInterface
      */
     public static function throwValidationException()
@@ -118,6 +119,7 @@ class Config
     /**
      * @since 1.0.0
      *
+     * @return never
      * @throws InvalidArgumentException
      */
     public static function throwInvalidArgumentException()
@@ -162,7 +164,7 @@ class Config
             return;
         }
 
-        if (empty(self::$container)) {
+        if (self::$container === null) {
             throw new RuntimeException('A service container must be set before initializing the library');
         }
 

@@ -58,6 +58,7 @@ abstract class ConditionalRule implements ValidationRule, ValidatesOnFrontEnd
             $conditionSet->and($rule[0], '=', $rule[1]);
         }
 
+        // @phpstan-ignore-next-line
         return new static($conditionSet);
     }
 

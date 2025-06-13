@@ -35,6 +35,7 @@ class DateTime implements ValidationRule, ValidatesOnFrontEnd, Sanitizer
      */
     public static function fromString(string $options = null): ValidationRule
     {
+        // @phpstan-ignore-next-line
         return new static($options);
     }
 
