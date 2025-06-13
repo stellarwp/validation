@@ -1,0 +1,26 @@
+includes:
+    - vendor/szepeviktor/phpstan-wordpress/extension.neon
+
+parameters:
+    # Level 5 is a good balance between strictness and practicality
+    level: 5
+
+    # Paths to analyze
+    paths:
+        - src
+
+    # Exclude paths
+    excludePaths:
+        - vendor/*
+        - _wordpress/*
+        - _plugins/*
+
+    # Ignore specific errors if needed
+    ignoreErrors:
+        # Add specific error patterns to ignore here if needed
+
+    # PHP version (must be an integer)
+    phpVersion: 70200
+
+    # Treat missing return types as mixed
+    treatPhpDocTypesAsCertain: false
