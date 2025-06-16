@@ -28,7 +28,10 @@ use StellarWP\Validation\Rules\Size;
 
 class ServiceProvider
 {
-    private $validationRules = [
+    /**
+     * @var array<class-string>
+     */
+    private array $validationRules = [
         Required::class,
         Min::class,
         Max::class,
@@ -55,7 +58,7 @@ class ServiceProvider
     /**
      * Registers the validation rules registrar with the container
      */
-    public function register()
+    public function register(): void
     {
         Config::getServiceContainer()->singleton(ValidationRulesRegistrar::class, function () {
             $register = new ValidationRulesRegistrar();

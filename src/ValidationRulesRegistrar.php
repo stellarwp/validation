@@ -11,8 +11,10 @@ use StellarWP\Validation\Contracts\ValidationRule;
  */
 class ValidationRulesRegistrar
 {
-    /** @var array */
-    protected $rules = [];
+    /**
+     * @var array<string, class-string<ValidationRule>>
+     */
+    protected array $rules = [];
 
     /**
      * Register one or many validation rules.
