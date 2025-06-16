@@ -33,7 +33,7 @@ class DateTime implements ValidationRule, ValidatesOnFrontEnd, Sanitizer
     /**
      * @since 1.2.0
      */
-    public static function fromString(string $options = null): ValidationRule
+    public static function fromString(?string $options = null): ValidationRule
     {
         return new static($options);
     }
@@ -41,7 +41,7 @@ class DateTime implements ValidationRule, ValidatesOnFrontEnd, Sanitizer
     /**
      * @since 1.2.0
      */
-    public function __construct(string $format = null)
+    public function __construct(?string $format = null)
     {
         $this->format = $format;
     }
