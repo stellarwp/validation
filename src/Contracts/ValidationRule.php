@@ -34,6 +34,11 @@ interface ValidationRule
      * @since 1.2.0 add ExcludeValue return option
      * @since 1.0.0
      *
+     * @param mixed $value
+     * @param Closure $fail
+     * @param string $key
+     * @param array<string, mixed> $values
+     *
      * @return void|ExcludeValue|SkipValidationRules
      */
     public function __invoke($value, Closure $fail, string $key, array $values);

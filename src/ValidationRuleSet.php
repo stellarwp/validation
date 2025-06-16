@@ -15,17 +15,17 @@ use StellarWP\Validation\Contracts\ValidatesOnFrontEnd;
 use StellarWP\Validation\Contracts\ValidationRule;
 use Traversable;
 
+/**
+ * @implements IteratorAggregate<int, ValidationRule|Closure>
+ */
 class ValidationRuleSet implements IteratorAggregate, JsonSerializable
 {
-    /**
-     * @var ValidationRulesRegistrar
-     */
-    private $register;
+    private ValidationRulesRegistrar $register;
 
     /**
      * @var array<int, ValidationRule|Closure>
      */
-    private $rules = [];
+    private array $rules = [];
 
     /**
      * @since 1.0.0
@@ -168,6 +168,8 @@ class ValidationRuleSet implements IteratorAggregate, JsonSerializable
      * Returns the validation rules.
      *
      * @since 1.0.0
+     *
+     * @return array<int, ValidationRule|Closure>
      */
     public function getRules(): array
     {

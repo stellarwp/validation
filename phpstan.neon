@@ -3,7 +3,7 @@ includes:
 
 parameters:
     # Level 5 is a good balance between strictness and practicality
-    level: 5
+    level: 6
 
     # Paths to analyze
     paths:
@@ -20,7 +20,7 @@ parameters:
         # Add specific error patterns to ignore here if needed
 
     # PHP version (must be an integer)
-    phpVersion: 70200
+    phpVersion: 70400
 
     # Treat missing return types as mixed
     treatPhpDocTypesAsCertain: false
