@@ -153,7 +153,7 @@ class ValidationRuleSet implements IteratorAggregate, JsonSerializable
      *
      * @since 1.0.0
      *
-     * @return void
+     * @return self
      */
     public function removeRuleWithId(string $id): self
     {
@@ -258,14 +258,14 @@ class ValidationRuleSet implements IteratorAggregate, JsonSerializable
             return $rule;
         } elseif (is_string($rule)) {
             return $this->getRuleFromString($rule);
-        } else {
-            Config::throwInvalidArgumentException(
-                sprintf(
-                    'Validation rule must be a string, instance of %s, or a closure',
-                    ValidationRule::class
-                )
-            );
         }
+
+        Config::throwInvalidArgumentException(
+            sprintf(
+                'Validation rule must be a string, instance of %s, or a closure',
+                ValidationRule::class
+            )
+        );
     }
 
     /**
@@ -277,6 +277,7 @@ class ValidationRuleSet implements IteratorAggregate, JsonSerializable
      */
     private function validateClosureRule(Closure $closure)
     {
+        $reflection = null;
         try {
             $reflection = new ReflectionFunction($closure);
         } catch (ReflectionException $e) {
