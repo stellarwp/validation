@@ -26,7 +26,7 @@ class Boolean implements ValidationRule, ValidatesOnFrontEnd, Sanitizer
      *
      * @since 1.4.0
      */
-    public static function fromString(string $options = null): ValidationRule
+    public static function fromString(?string $options = null): ValidationRule
     {
         return new self();
     }

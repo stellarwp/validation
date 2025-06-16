@@ -21,7 +21,7 @@ class Required implements ValidationRule, ValidatesOnFrontEnd
     /**
      * @inheritDoc
      */
-    public static function fromString(string $options = null): ValidationRule
+    public static function fromString(?string $options = null): ValidationRule
     {
         return new self();
     }

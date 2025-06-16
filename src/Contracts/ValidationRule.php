@@ -25,7 +25,7 @@ interface ValidationRule
      *
      * @since 1.0.0
      */
-    public static function fromString(string $options = null): ValidationRule;
+    public static function fromString(?string $options = null): ValidationRule;
 
     /**
      * The invokable method used to validate the value. If the value is invalid, the fail callback should be invoked

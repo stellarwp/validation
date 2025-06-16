@@ -30,7 +30,7 @@ class Exclude implements ValidationRule
      *
      * @since 1.2.0
      */
-    public static function fromString(string $options = null): ValidationRule
+    public static function fromString(?string $options = null): ValidationRule
     {
         return new self();
     }

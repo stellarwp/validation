@@ -39,7 +39,7 @@ class In implements ValidationRule, ValidatesOnFrontEnd
     /**
      * @since 1.2.0
      */
-    public static function fromString(string $options = null): ValidationRule
+    public static function fromString(?string $options = null): ValidationRule
     {
         if (empty(trim($options))) {
             Config::throwInvalidArgumentException('The In rule requires at least one value to be specified.');

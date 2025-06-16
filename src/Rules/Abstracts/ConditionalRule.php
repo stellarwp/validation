@@ -39,7 +39,7 @@ abstract class ConditionalRule implements ValidationRule, ValidatesOnFrontEnd
      *
      * @since 1.2.0
      */
-    public static function fromString(string $options = null): ValidationRule
+    public static function fromString(?string $options = null): ValidationRule
     {
         if (empty($options)) {
             Config::throwInvalidArgumentException(static::class . ' rule requires at least one condition');
