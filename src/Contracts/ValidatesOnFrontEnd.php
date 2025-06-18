@@ -11,7 +11,7 @@ interface ValidatesOnFrontEnd
      *
      * @since 1.0.0
      *
-     * @return int|float|string|bool|array|null
+     * @return mixed
      */
     public function serializeOption();
 }

@@ -22,7 +22,7 @@ class Integer implements ValidationRule, ValidatesOnFrontEnd, Sanitizer
     /**
      * @inheritDoc
      */
-    public static function fromString(string $options = null): ValidationRule
+    public static function fromString(?string $options = null): ValidationRule
     {
         return new self();
     }

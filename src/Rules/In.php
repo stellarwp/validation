@@ -10,9 +10,9 @@ use StellarWP\Validation\Contracts\ValidationRule;
 class In implements ValidationRule, ValidatesOnFrontEnd
 {
     /**
-     * @var array
+     * @var array<mixed>
      */
-    protected $acceptedValues;
+    protected array $acceptedValues;
 
     /**
      * @since 1.2.0
@@ -24,6 +24,8 @@ class In implements ValidationRule, ValidatesOnFrontEnd
 
     /**
      * @since 1.2.0
+     *
+     * @param mixed ...$acceptedValues
      */
     final public function __construct(...$acceptedValues)
     {
@@ -37,7 +39,7 @@ class In implements ValidationRule, ValidatesOnFrontEnd
     /**
      * @since 1.2.0
      */
-    public static function fromString(string $options = null): ValidationRule
+    public static function fromString(?string $options = null): ValidationRule
     {
         if (empty(trim($options))) {
             Config::throwInvalidArgumentException('The In rule requires at least one value to be specified.');
@@ -64,6 +66,8 @@ class In implements ValidationRule, ValidatesOnFrontEnd
 
     /**
      * @since 1.2.0
+     *
+     * @return array<mixed>
      */
     public function serializeOption(): array
     {

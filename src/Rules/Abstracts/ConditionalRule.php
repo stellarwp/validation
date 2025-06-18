@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace StellarWP\Validation\Rules\Abstracts;
 
 use StellarWP\FieldConditions\ComplexConditionSet;
+use StellarWP\FieldConditions\SimpleConditionSet;
 use StellarWP\FieldConditions\Contracts\Condition;
 use StellarWP\FieldConditions\Contracts\ConditionSet;
-use StellarWP\FieldConditions\SimpleConditionSet;
 use StellarWP\Validation\Config;
 use StellarWP\Validation\Contracts\ValidatesOnFrontEnd;
 use StellarWP\Validation\Contracts\ValidationRule;
@@ -15,12 +15,12 @@ use StellarWP\Validation\Contracts\ValidationRule;
 abstract class ConditionalRule implements ValidationRule, ValidatesOnFrontEnd
 {
     /**
-     * @var ConditionSet
+     * @var SimpleConditionSet|ComplexConditionSet
      */
-    protected $conditions;
+    protected ConditionSet $conditions;
 
     /**
-     * @param ConditionSet|Condition[] $conditions
+     * @param SimpleConditionSet|ComplexConditionSet|Condition[] $conditions
      */
     public function __construct($conditions)
     {
@@ -39,7 +39,7 @@ abstract class ConditionalRule implements ValidationRule, ValidatesOnFrontEnd
      *
      * @since 1.2.0
      */
-    public static function fromString(string $options = null): ValidationRule
+    public static function fromString(?string $options = null): ValidationRule
     {
         if (empty($options)) {
             Config::throwInvalidArgumentException(static::class . ' rule requires at least one condition');
@@ -58,6 +58,7 @@ abstract class ConditionalRule implements ValidationRule, ValidatesOnFrontEnd
             $conditionSet->and($rule[0], '=', $rule[1]);
         }
 
+        // @phpstan-ignore-next-line
         return new static($conditionSet);
     }
 

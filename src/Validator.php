@@ -7,6 +7,8 @@ namespace StellarWP\Validation;
 use StellarWP\Validation\Commands\ExcludeValue;
 use StellarWP\Validation\Commands\SkipValidationRules;
 use StellarWP\Validation\Contracts\Sanitizer;
+use StellarWP\Validation\Contracts\ValidationRule;
+use Closure;
 
 /**
  * A tool for taking in a set of values and corresponding validation rules, and then validating the values.
@@ -18,38 +20,39 @@ class Validator
     /**
      * @var array<string, ValidationRuleSet>
      */
-    private $ruleSets;
+    private array $ruleSets;
 
     /**
      * @var array<string, mixed>
      */
-    private $values;
+    private array $values;
 
     /**
      * @var array<string, string>
      */
-    private $labels;
+    private array $labels;
 
     /**
      * @var array<string, string>
      */
-    private $errors = [];
+    private array $errors = [];
 
     /**
      * @var array<string, mixed>
      */
-    private $validatedValues = [];
+    private array $validatedValues = [];
 
     /**
      * @var bool
      */
-    private $ranValidationRules = false;
+    private bool $ranValidationRules = false;
 
     /**
      * @since 1.0.0
      *
-     * @param array<string, ValidationRuleSet|array> $ruleSets
+     * @param array<string, ValidationRuleSet|array<string|ValidationRule|Closure>> $ruleSets
      * @param array<string, mixed> $values
+     * @param array<string, string> $labels
      */
     public function __construct(array $ruleSets, array $values, array $labels = [])
     {
@@ -98,10 +101,8 @@ class Validator
      * Will run only once, and then store the results for subsequent calls.
      *
      * @since 1.0.0
-     *
-     * @return void
      */
-    private function runValidationRules()
+    private function runValidationRules(): void
     {
         if ($this->ranValidationRules) {
             return;
@@ -156,6 +157,8 @@ class Validator
      * Returns the validated values, with any sanitization rules applied.
      *
      * @since 1.0.0
+     *
+     * @return array<string, mixed>
      */
     public function validated(): array
     {

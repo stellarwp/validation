@@ -23,7 +23,9 @@
         "lucatume/di52": "^3.0",
         "lucatume/wp-browser": "^3.0.14",
         "codeception/module-phpbrowser": "^1.0.0",
-        "codeception/module-asserts": "^1.0.0"
+        "codeception/module-asserts": "^1.0.0",
+        "phpstan/phpstan": "^1.12",
+        "szepeviktor/phpstan-wordpress": "^1.3"
     },
     "autoload": {
         "psr-4": {
@@ -37,7 +39,7 @@
     },
     "config": {
         "platform": {
-            "php": "7.2"
+            "php": "7.4"
         }
     },
     "repositories": [
@@ -45,5 +47,9 @@
             "type": "git",
             "url": "https://github.com/wordpress/wordpress-develop.git"
         }
-    ]
+    ],
+    "scripts": {
+        "phpstan": "phpstan analyse --memory-limit=512M",
+        "phpstan:baseline": "phpstan analyse --generate-baseline=phpstan-baseline.neon --memory-limit=512M"
+    }
 }

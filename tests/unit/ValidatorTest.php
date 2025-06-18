@@ -277,7 +277,7 @@ class MockSkipRule implements ValidationRule
         return 'skip';
     }
 
-    public static function fromString(string $options = null): ValidationRule
+    public static function fromString(?string $options = null): ValidationRule
     {
         return new self();
     }
@@ -301,7 +301,7 @@ class MockRequiredRule implements ValidationRule
     /**
      * @inheritDoc
      */
-    public static function fromString(string $options = null): ValidationRule
+    public static function fromString(?string $options = null): ValidationRule
     {
         return new self();
     }
@@ -330,7 +330,7 @@ class MockIntegerRule implements ValidationRule, Sanitizer
     /**
      * @inheritDoc
      */
-    public static function fromString(string $options = null): ValidationRule
+    public static function fromString(?string $options = null): ValidationRule
     {
         return new self();
     }
@@ -361,7 +361,7 @@ class MockExcludeRule implements ValidationRule
         return 'exclude';
     }
 
-    public static function fromString(string $options = null): ValidationRule
+    public static function fromString(?string $options = null): ValidationRule
     {
         return new self();
     }
